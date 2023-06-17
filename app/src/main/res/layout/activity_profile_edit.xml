@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <!-- User Profile Image -->
+                <ImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/star" /> <!-- placeholder image -->
+                <Button
+                    android:id="@+id/change_image_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select\n Picture" />
+                <!-- Spacer View -->
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <!-- Edit Button -->
+                <Button
+                    android:id="@+id/switch_button"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="end"
+                    android:text="Save"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+
+            <!-- User Profile Management & Badges -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:padding="8dp"
+                android:text="@string/user_profile"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="30sp"
+                />
+
+            <!-- Name -->
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:padding="8dp"
+                android:text="Name"
+                android:textSize="25sp"
+                android:minHeight="40dp" />
+
+            <!-- Department -->
+            <EditText
+                android:id="@+id/department"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:padding="8dp"
+                android:text="Department"
+                android:textSize="25sp"
+                android:minHeight="40dp" />
+
+            <!-- Job Role -->
+            <EditText
+                android:id="@+id/job_role"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:padding="8dp"
+                android:text="Job Role"
+                android:textSize="25sp"
+                android:minHeight="40dp" />
+
+            <!-- Short Description -->
+            <EditText
+                android:id="@+id/short_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:padding="8dp"
+                android:text="Short Description"
+                android:textSize="25sp"
+                android:minHeight="40dp" />
+
+            <!-- Hobbies/Interest -->
+            <EditText
+                android:id="@+id/hobbies_interest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:padding="8dp"
+                android:text="Hobbies/Interest"
+                android:textSize="25sp"
+                android:minHeight="40dp" />
+
+            <!-- Location -->
+            <EditText
+                android:id="@+id/location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:padding="8dp"
+                android:text="Location"
+                android:textSize="25sp"
+                android:minHeight="40dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
