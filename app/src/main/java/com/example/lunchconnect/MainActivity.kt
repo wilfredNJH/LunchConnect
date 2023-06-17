@@ -8,31 +8,33 @@ the main activity class observes changes on the list of Notes and creates an Not
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
+
+import com.example.lunchconnect.UserData
+import com.example.lunchconnect.NoteRecyclerViewAdapter
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var toolbar: Toolbar
+    private lateinit var itemList: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
 
-        // prepare our List view and RecyclerView (cells)
-        setupRecyclerView(item_list)
+        toolbar = findViewById(R.id.toolbar)
+        itemList = findViewById(R.id.item_list)
+
+        setSupportActionBar(toolbar)
+        setupRecyclerView(itemList)
     }
 
-    // recycler view is the list of cells
     private fun setupRecyclerView(recyclerView: RecyclerView) {
-
-        // update individual cell when the Note data are modified
         UserData.notes().observe(this, Observer<MutableList<UserData.Note>> { notes ->
             Log.d(TAG, "Note observer received ${notes.size} notes")
-
-            // let's create a RecyclerViewAdapter that manages the individual cells
             recyclerView.adapter = NoteRecyclerViewAdapter(notes)
         })
     }
