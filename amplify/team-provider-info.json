@@ -10,6 +10,11 @@
       "StackName": "amplify-lunchconnect-dev-223222",
       "StackId": "arn:aws:cloudformation:ap-southeast-1:783998833231:stack/amplify-lunchconnect-dev-223222/c5ddce70-0d1b-11ee-8272-062fa483a518",
       "AmplifyAppId": "d2b6t79k7pyrkh"
+    },
+    "categories": {
+      "auth": {
+        "lunchconnect05cf8cf0": {}
+      }
     }
   }
 }
