@@ -76,20 +76,21 @@ object Backend {
 
         Log.i(TAG, "retrieving session status")
 
-        // is user already authenticated (from a previous execution) ?
+
         Amplify.Auth.fetchAuthSession(
-            { result ->
-                Log.i(TAG, result.toString())
-                val cognitoAuthSession = result as AWSCognitoAuthSession
-                // update UI
-                this.updateUserData(cognitoAuthSession.isSignedIn)
-                when (cognitoAuthSession.identityIdResult.type) {
-                    AuthSessionResult.Type.SUCCESS ->  Log.i(TAG, "IdentityId: " + cognitoAuthSession.identityIdResult.value)
-                    AuthSessionResult.Type.FAILURE -> Log.i(TAG, "IdentityId not present because: " + cognitoAuthSession.identityIdResult.error.toString())
+            {
+                val session = it as AWSCognitoAuthSession
+                when (session.identityIdResult.type) {
+                    AuthSessionResult.Type.SUCCESS ->
+                        Log.i("AuthQuickStart", "IdentityId = ${session.identityIdResult.value}")
+                    AuthSessionResult.Type.FAILURE ->
+                        Log.w("AuthQuickStart", "IdentityId not found", session.identityIdResult.error)
                 }
             },
-            { error -> Log.i(TAG, error.toString()) }
+            { Log.e("AuthQuickStart", "Failed to fetch session", it) }
         )
+
+
         return this
     }
 
@@ -120,6 +121,11 @@ object Backend {
 
     fun signOut() {
         Log.i(TAG, "Initiate Signout Sequence")
+
+//        Amplify.Auth.signOut(
+//            { Log.i(TAG, "Signed out!") },
+//            { error -> Log.e(TAG, error.toString()) }
+//        )
 
         Amplify.Auth.signOut { signOutResult ->
             when(signOutResult) {
