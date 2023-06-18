@@ -53,7 +53,9 @@ class ProfileActivity : AppCompatActivity() {
             }
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
+            // Handle the situation when the file does not exist, perhaps by showing a default image or a toast message
         }
+
 
         loadData()
 
