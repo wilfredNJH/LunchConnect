@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import java.io.FileNotFoundException
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -45,9 +46,13 @@ class ProfileActivity : AppCompatActivity() {
 
 
         // Load the image from internal storage
-        val bitmap = loadImageFromInternalStorage("profile_image.png")
-        if (bitmap != null) {
-            findViewById<ImageView>(R.id.profile_image).setImageBitmap(bitmap)
+        try {
+            val bitmap = loadImageFromInternalStorage("profile_image.png")
+            if (bitmap != null) {
+                findViewById<ImageView>(R.id.profile_image).setImageBitmap(bitmap)
+            }
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
         }
 
         loadData()
