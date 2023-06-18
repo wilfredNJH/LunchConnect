@@ -46,5 +46,14 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".AddNoteActivity"
+            android:label="Add Note"
+            android:theme="@style/Theme.LunchConnect.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.lunchconnect.MainActivity" />
+        </activity>
+
     </application>
 </manifest>
