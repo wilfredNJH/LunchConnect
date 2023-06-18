@@ -15,38 +15,70 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-
-import com.example.lunchconnect.UserData
-import com.example.lunchconnect.NoteRecyclerViewAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var toolbar: Toolbar
-    private lateinit var itemList: RecyclerView
-    private lateinit var profile: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        profile =findViewById(R.id.button_profile)
-        toolbar = findViewById(R.id.toolbar)
-        itemList = findViewById(R.id.item_list)
-
         setSupportActionBar(toolbar)
-        setupRecyclerView(itemList)
 
-        profile.setOnClickListener {
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
+        // prepare our List view and RecyclerView (cells)
+        setupRecyclerView(item_list)
+
+        // register an observer on Userdata.isSignedIn value. The closure is called when isSignedIn value changes. Right now, we just change the lock icon :
+        // open when the user is authenticated and closed when the user has no session.
+        setupAuthButton(UserData)
+
+        UserData.isSignedIn.observe(this, Observer<Boolean> { isSignedUp ->
+            // update UI
+            Log.i(TAG, "isSignedIn changed : $isSignedUp")
+
+            if (isSignedUp) {
+                fabAuth.setImageResource(R.drawable.ic_baseline_lock_open)
+            } else {
+                fabAuth.setImageResource(R.drawable.ic_baseline_lock)
+            }
+        })
+    }
+
+    // recycler view is the list of cells
+    private fun setupRecyclerView(recyclerView: RecyclerView) {
+
+        // update individual cell when the Note data are modified
+        UserData.notes().observe(this, Observer<MutableList<UserData.Note>> { notes ->
+            Log.d(TAG, "Note observer received ${notes.size} notes")
+
+            // let's create a RecyclerViewAdapter that manages the individual cells
+            recyclerView.adapter = NoteRecyclerViewAdapter(notes)
+        })
+    }
+
+    // anywhere in the MainActivity class
+    private fun setupAuthButton(userData: UserData) {
+
+        // register a click listener
+        fabAuth.setOnClickListener { view ->
+
+            val authButton = view as FloatingActionButton
+
+            if (userData.isSignedIn.value!!) {
+                authButton.setImageResource(R.drawable.ic_baseline_lock_open)
+                Backend.signOut()
+            } else {
+                authButton.setImageResource(R.drawable.ic_baseline_lock_open)
+                Backend.signIn(this)
+            }
         }
     }
 
-    private fun setupRecyclerView(recyclerView: RecyclerView) {
-        UserData.notes().observe(this, Observer<MutableList<UserData.Note>> { notes ->
-            Log.d(TAG, "Note observer received ${notes.size} notes")
-            recyclerView.adapter = NoteRecyclerViewAdapter(notes)
-        })
+    // receive the web redirect after authentication
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Backend.handleWebUISignInResponse(requestCode, resultCode, data)
     }
 
     companion object {
