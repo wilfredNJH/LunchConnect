@@ -48,7 +48,7 @@
 
 
             <!-- User Profile Management & Badges -->
-            <EditText
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:padding="8dp"
-                android:text="Name"
+                android:hint="Name"
                 android:textSize="25sp"
                 android:minHeight="40dp" />
 
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:padding="8dp"
-                android:text="Department"
+                android:hint="Department"
                 android:textSize="25sp"
                 android:minHeight="40dp" />
 
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:padding="8dp"
-                android:text="Job Role"
+                android:hint="Job Role"
                 android:textSize="25sp"
                 android:minHeight="40dp" />
 
@@ -98,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:padding="8dp"
-                android:text="Short Description"
+                android:hint="Short Description"
                 android:textSize="25sp"
                 android:minHeight="40dp" />
 
@@ -109,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:padding="8dp"
-                android:text="Hobbies/Interest"
+                android:hint="Hobbies/Interest"
                 android:textSize="25sp"
                 android:minHeight="40dp" />
 
@@ -120,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:padding="8dp"
-                android:text="Location"
+                android:hint="Location"
                 android:textSize="25sp"
                 android:minHeight="40dp" />
 
