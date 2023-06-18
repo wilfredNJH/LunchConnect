@@ -21,6 +21,9 @@ import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var profile: Button
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -33,6 +36,9 @@ class MainActivity : AppCompatActivity() {
         // open when the user is authenticated and closed when the user has no session.
         setupAuthButton(UserData)
 
+        profile =findViewById(R.id.button_profile)
+
+
         UserData.isSignedIn.observe(this, Observer<Boolean> { isSignedUp ->
             // update UI
             Log.i(TAG, "isSignedIn changed : $isSignedUp")
@@ -43,6 +49,13 @@ class MainActivity : AppCompatActivity() {
                 fabAuth.setImageResource(R.drawable.ic_baseline_lock)
             }
         })
+
+
+        profile.setOnClickListener {
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     // recycler view is the list of cells
