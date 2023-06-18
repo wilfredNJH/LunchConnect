@@ -17,6 +17,7 @@ import com.amplifyframework.auth.AuthChannelEventName
 import com.amplifyframework.auth.AuthException
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin
 import com.amplifyframework.auth.cognito.AWSCognitoAuthSession
+import com.amplifyframework.auth.cognito.result.AWSCognitoAuthSignOutResult
 import com.amplifyframework.auth.result.AuthSessionResult
 import com.amplifyframework.auth.result.AuthSignInResult
 import com.amplifyframework.core.Amplify
@@ -82,9 +83,9 @@ object Backend {
                 val cognitoAuthSession = result as AWSCognitoAuthSession
                 // update UI
                 this.updateUserData(cognitoAuthSession.isSignedIn)
-                when (cognitoAuthSession.identityId.type) {
-                    AuthSessionResult.Type.SUCCESS ->  Log.i(TAG, "IdentityId: " + cognitoAuthSession.identityId.value)
-                    AuthSessionResult.Type.FAILURE -> Log.i(TAG, "IdentityId not present because: " + cognitoAuthSession.identityId.error.toString())
+                when (cognitoAuthSession.identityIdResult.type) {
+                    AuthSessionResult.Type.SUCCESS ->  Log.i(TAG, "IdentityId: " + cognitoAuthSession.identityIdResult.value)
+                    AuthSessionResult.Type.FAILURE -> Log.i(TAG, "IdentityId not present because: " + cognitoAuthSession.identityIdResult.error.toString())
                 }
             },
             { error -> Log.i(TAG, error.toString()) }
@@ -120,10 +121,34 @@ object Backend {
     fun signOut() {
         Log.i(TAG, "Initiate Signout Sequence")
 
-        Amplify.Auth.signOut(
-            { Log.i(TAG, "Signed out!") },
-            { error -> Log.e(TAG, error.toString()) }
-        )
+        Amplify.Auth.signOut { signOutResult ->
+            when(signOutResult) {
+                is AWSCognitoAuthSignOutResult.CompleteSignOut -> {
+                    // Sign Out completed fully and without errors.
+                    Log.i("AuthQuickStart", "Signed out successfully")
+                }
+                is AWSCognitoAuthSignOutResult.PartialSignOut -> {
+                    // Sign Out completed with some errors. User is signed out of the device.
+                    signOutResult.hostedUIError?.let {
+                        Log.e("AuthQuickStart", "HostedUI Error", it.exception)
+                        // Optional: Re-launch it.url in a Custom tab to clear Cognito web session.
+
+                    }
+                    signOutResult.globalSignOutError?.let {
+                        Log.e("AuthQuickStart", "GlobalSignOut Error", it.exception)
+                        // Optional: Use escape hatch to retry revocation of it.accessToken.
+                    }
+                    signOutResult.revokeTokenError?.let {
+                        Log.e("AuthQuickStart", "RevokeToken Error", it.exception)
+                        // Optional: Use escape hatch to retry revocation of it.refreshToken.
+                    }
+                }
+                is AWSCognitoAuthSignOutResult.FailedSignOut -> {
+                    // Sign Out failed with an exception, leaving the user signed in.
+                    Log.e("AuthQuickStart", "Sign out Failed", signOutResult.exception)
+                }
+            }
+        }
     }
 
     fun signIn(callingActivity: Activity) {
@@ -139,9 +164,10 @@ object Backend {
     // pass the data from web redirect to Amplify libs
     fun handleWebUISignInResponse(requestCode: Int, resultCode: Int, data: Intent?) {
         Log.d(TAG, "received requestCode : $requestCode and resultCode : $resultCode")
-        if (requestCode == AWSCognitoAuthPlugin.WEB_UI_SIGN_IN_ACTIVITY_CODE) {
+        //if (requestCode == AWSCognitoAuthPlugin.WEB_UI_SIGN_IN_ACTIVITY_CODE) {
+            Log.d("main","entered here!!!!!!")
             Amplify.Auth.handleWebUISignInResponse(data)
-        }
+        //}
     }
 
     fun queryNotes() {
