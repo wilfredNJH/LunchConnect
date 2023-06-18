@@ -11,6 +11,7 @@ import android.graphics.Bitmap
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.amplifyframework.datastore.generated.model.NoteData
 
 // a singleton to hold user data (this is a ViewModel pattern, without inheriting from ViewModel)
 object UserData {
@@ -66,6 +67,25 @@ object UserData {
     // a note data class
     data class Note(val id: String, val name: String, val description: String, var imageName: String? = null) {
         override fun toString(): String = name
+
+
+        // return an API NoteData from this Note object
+        val data : NoteData
+            get() = NoteData.builder()
+                .name(this.name)
+                .description(this.description)
+                .image(this.imageName)
+                .id(this.id)
+                .build()
+
+        // static function to create a Note from a NoteData API object
+        companion object {
+            fun from(noteData : NoteData) : Note {
+                val result = Note(noteData.id, noteData.name, noteData.description, noteData.image)
+                // some additional code will come here later
+                return result
+            }
+        }
 
         // bitmap image
         var image : Bitmap? = null
