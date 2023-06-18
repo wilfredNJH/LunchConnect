@@ -11,6 +11,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LunchConnect"
         tools:targetApi="31">
+
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCqcRQGNF7lB-snbzCW2iFqbdCR57FNogQ" />
+
+        <activity
+            android:name=".MapsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_maps" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -25,6 +36,7 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+
         </activity>
     </application>
 
