@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.content_main.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var profile: Button
+    private lateinit var questionnaire: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +37,8 @@ class MainActivity : AppCompatActivity() {
         // open when the user is authenticated and closed when the user has no session.
         setupAuthButton(UserData)
 
-        profile =findViewById(R.id.button_profile)
+        profile = findViewById(R.id.button_profile)
+        questionnaire = findViewById(R.id.button_questionnaire)
 
 
         UserData.isSignedIn.observe(this, Observer<Boolean> { isSignedUp ->
@@ -58,11 +60,15 @@ class MainActivity : AppCompatActivity() {
         })
 
 
+        questionnaire.setOnClickListener {
+            val intent = Intent(this, Questionnaire::class.java)
+            startActivity(intent)
+        }
+
         profile.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
-
 
         // register a click listener
         fabAdd.setOnClickListener {

@@ -15,4 +15,12 @@
     <string name="user_profile_management">User Profile Management</string>
     <string name="user_profile">User Profile</string>
 
+<!--    TODO: Change Hardcoded Questionnaire -->
+    <string name="Questionnaire1">What initially sparked your interest in this field or profession?</string>
+    <string name="Questionnaire2">What do you find most rewarding about your work?</string>
+    <string name="Questionnaire3">What are some of your hobbies or interests outside of work?</string>
+    <string name="Questionnaire4">What is one thing on your bucket list that you hope to accomplish someday?</string>
+    <string name="Questionnaire5">Do you enjoy any sports or physical activities? Which ones?</string>
+    <string name="Questionnaire6">What is your go-to way to relax or unwind after a busy day?</string>
+
 </resources>
