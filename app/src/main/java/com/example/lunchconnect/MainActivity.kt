@@ -6,9 +6,12 @@ the main activity class observes changes on the list of Notes and creates an Not
 
  */
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.ButtonBarLayout
 import androidx.appcompat.widget.Toolbar
@@ -18,12 +21,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import java.io.FileNotFoundException
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var profile: Button
     private lateinit var questionnaire: Button
 
+    private lateinit var profileimage: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +42,12 @@ class MainActivity : AppCompatActivity() {
         // open when the user is authenticated and closed when the user has no session.
         setupAuthButton(UserData)
 
-        profile = findViewById(R.id.button_profile)
+
         questionnaire = findViewById(R.id.button_questionnaire)
+
+        profileimage =findViewById(R.id.profile_main)
+        // Load the image from internal storage
+        loadImage("profile_image.png")
 
 
         UserData.isSignedIn.observe(this, Observer<Boolean> { isSignedUp ->
@@ -65,7 +74,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        profile.setOnClickListener {
+
+
+
+        profileimage.setOnClickListener {
+            Log.d(TAG, "ImageView was clicked")
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
@@ -74,7 +87,13 @@ class MainActivity : AppCompatActivity() {
         fabAdd.setOnClickListener {
             startActivity(Intent(this, AddNoteActivity::class.java))
         }
+    }//oncreate
+
+    override fun onResume() {
+        super.onResume()
+        loadImage("profile_image.png")
     }
+
 
     // recycler view is the list of cells
     private fun setupRecyclerView(recyclerView: RecyclerView) {
@@ -114,6 +133,28 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         Backend.handleWebUISignInResponse(requestCode, resultCode, data)
+    }
+
+
+
+    private fun loadImageFromInternalStorage(filename: String): Bitmap? {
+        val fis = openFileInput(filename)
+        val bitmap = BitmapFactory.decodeStream(fis)
+        fis.close()
+        return bitmap
+    }
+    private fun loadImage(filename: String)
+    {
+        // Load the image from internal storage
+        try {
+            val bitmap = loadImageFromInternalStorage("profile_image.png")
+            if (bitmap != null) {
+                findViewById<ImageView>(R.id.profile_main).setImageBitmap(bitmap)
+            }
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+            // Handle the situation when the file does not exist, perhaps by showing a default image or a toast message
+        }
     }
 
     companion object {
