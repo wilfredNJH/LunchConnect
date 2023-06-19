@@ -10,8 +10,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.ButtonBarLayout
-import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -21,13 +19,17 @@ import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
 
+
     private lateinit var profile: Button
+    private lateinit var group: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        GMapApplication()
 
         // prepare our List view and RecyclerView (cells)
         setupRecyclerView(item_list)
@@ -37,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         setupAuthButton(UserData)
 
         profile =findViewById(R.id.button_profile)
+        group =findViewById(R.id.buttonGroup)
 
 
         UserData.isSignedIn.observe(this, Observer<Boolean> { isSignedUp ->
@@ -60,6 +63,11 @@ class MainActivity : AppCompatActivity() {
 
         profile.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        group.setOnClickListener {
+            val intent = Intent(this, GroupData::class.java)
             startActivity(intent)
         }
 

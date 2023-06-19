@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <!-- add these nodes between manifest and application  -->
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <!-- add these nodes between manifest and application -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
-        android:name="AndroidGettingStartedApplication"
+        android:name=".GMapApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -19,6 +19,35 @@
         tools:targetApi="31">
 
 
+        <activity
+            android:name=".GMapDemo"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".StringUtil"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+<!--        <activity-->
+<!--            android:name=".DetailsActivity"-->
+<!--            android:exported="false">-->
+<!--            <meta-data-->
+<!--                android:name="android.app.lib_name"-->
+<!--                android:value="" />-->
+<!--        </activity>-->
+<!--        <activity-->
+<!--            android:name=".GroupData"-->
+<!--            android:exported="false">-->
+<!--            <meta-data-->
+<!--                android:name="android.app.lib_name"-->
+<!--                android:value="" />-->
+<!--        </activity>-->
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCqcRQGNF7lB-snbzCW2iFqbdCR57FNogQ" />
@@ -28,8 +57,9 @@
             android:exported="false"
             android:label="@string/title_activity_maps" />
 
+
         <activity
-            android:name=".MainActivity"
+            android:name=".GroupData"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.LunchConnect.NoActionBar">
@@ -42,8 +72,9 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-
         </activity>
+
+
 
         <activity
             android:name="com.amplifyframework.auth.cognito.activities.HostedUIRedirectActivity"
@@ -58,6 +89,7 @@
             </intent-filter>
         </activity>
 
+
         <activity
             android:name=".AddNoteActivity"
             android:label="Add Note"
@@ -67,10 +99,11 @@
                 android:value="com.example.lunchconnect.MainActivity" />
         </activity>
 
-
         <activity android:name=".ProfileActivity" />
-
-
+        <activity android:name=".GMapAutocompleteActivity" />
+        <activity android:name=".GMapCurrentPlaceActivity" />
+        <activity android:name=".GMapDetailsActivity" />
 
     </application>
+
 </manifest>

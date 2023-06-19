@@ -57,10 +57,10 @@
         />
 
     <Button
-        android:id="@+id/buttonGoogleMap"
+        android:id="@+id/buttonGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Open Maps Activity" />
+        android:text="Go to GroupActivity" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

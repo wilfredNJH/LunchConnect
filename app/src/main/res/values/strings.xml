@@ -12,8 +12,19 @@
     <string name="title_activity_maps">MapsActivity</string>
 
 
-
     <string name="user_profile_management">User Profile Management</string>
     <string name="user_profile">User Profile</string>
+
+
+    <string name="details_demo_title">Place Details</string>
+    <string name="details_demo_description">Fetch and display selected details about a Place</string>
+    <string name="autocomplete_fragment_demo_title">Place Autocomplete</string>
+    <string name="autocomplete_fragment_demo_description">Provide type-ahead predictions of Places as the user types in an input field.</string>
+    <string name="current_demo_title">Current Place</string>
+    <string name="current_demo_description">Suggest possible places that match the device\'s current location</string>
+    <string name="button_details">Get Details</string>
+    <string name="details_input_hint">Enter a Place ID</string>
+    <string name="details_input_default">ChIJ-fIL2vnvTxkRaNUY32NGBYs</string>
+    <string name="current_button">Get Current Place</string>
 
 </resources>
