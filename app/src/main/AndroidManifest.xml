@@ -96,6 +96,9 @@
         <activity android:name=".GMapCurrentPlaceActivity" />
         <activity android:name=".GMapDetailsActivity" />
 
+        <activity android:name=".Questionnaire" />
+
+
     </application>
 
 </manifest>

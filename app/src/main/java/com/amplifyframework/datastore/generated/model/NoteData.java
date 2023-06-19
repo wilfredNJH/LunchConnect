@@ -19,27 +19,10 @@ import com.amplifyframework.core.model.query.predicate.QueryField;
 
 import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
-
-/**
- * @SuppressWarnings("all")
- * @ModelConfig(pluralName = "NoteData", type = Model.Type.USER, version = 1, authRules = {
- *   @AuthRule(allow = AuthStrategy.OWNER, ownerField = "owner", identityClaim = "cognito:username", provider = "userPools", operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
- * })
- *   public static final QueryField ID = field("NoteData", "id");
- *   public static final QueryField NAME = field("NoteData", "name");
- *   public static final QueryField DESCRIPTION = field("NoteData", "description");
- *   public static final QueryField IMAGE = field("NoteData", "image");
- *
- *   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
- *   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
- *
- *   TODO : FIX THIS!!!
- */
-
 /** This is an auto generated class representing the NoteData type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "NoteData",type = Model.Type.USER, version = 1, authRules = {
-  @AuthRule(allow = AuthStrategy.OWNER, ownerField = "owner", identityClaim = "cognito:username", operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
+@ModelConfig(pluralName = "NoteData", type = Model.Type.USER, version = 1, authRules = {
+  @AuthRule(allow = AuthStrategy.OWNER, ownerField = "owner", identityClaim = "cognito:username", provider = "userPools", operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
 })
 public final class NoteData implements Model {
   public static final QueryField ID = field("NoteData", "id");
