@@ -4,16 +4,12 @@ package com.example.lunchconnect
 
 import android.app.Application
 
-class AndroidGettingStartedApplication : Application() {
+class AndroidGettingStartedApplication : GMapApplication() {
 
     override fun onCreate() {
         super.onCreate()
 
         // initialize Amplify when application is starting
         Backend.initialize(applicationContext)
-
-        // Create an instance of GMapApplication and call its onCreate() method
-//        val gMapApplication = GMapApplication()
-//        gMapApplication.onCreate()
     }
 }

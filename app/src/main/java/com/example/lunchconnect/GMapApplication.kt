@@ -19,11 +19,11 @@ package com.example.lunchconnect
 import android.app.Application
 import com.google.android.libraries.places.api.Places
 
-class GMapApplication : Application() {
+open class GMapApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
         // Initialize the SDK with the Google Maps Platform API key
-        Places.initialize(this, BuildConfig.MAPS_API_KEY)
+        Places.initialize(this, "AIzaSyCqcRQGNF7lB-snbzCW2iFqbdCR57FNogQ")
     }
 }
