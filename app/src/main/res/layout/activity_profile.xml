@@ -53,73 +53,120 @@
                 android:text="@string/user_profile"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="30sp"
+
                 />
 
             <!-- Name -->
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/nametitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:padding="8dp"
                 android:text="Name"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
                 android:textSize="25sp"
-                android:minHeight="40dp" />
+                android:background="@drawable/text_underline"
+                />
 
             <!-- Department -->
+            <TextView
+                android:id="@+id/departmenttitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Department"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textSize="20sp" />
             <TextView
                 android:id="@+id/department"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:padding="8dp"
-                android:text="Department"
                 android:textSize="25sp"
-                android:minHeight="40dp" />
+                android:background="@drawable/text_underline"
+                />
 
             <!-- Job Role -->
+            <TextView
+                android:id="@+id/job_roletitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Job Role"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textSize="20sp" />
             <TextView
                 android:id="@+id/job_role"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:padding="8dp"
-                android:text="Job Role"
                 android:textSize="25sp"
-                android:minHeight="40dp" />
+                android:background="@drawable/text_underline" />
 
             <!-- Short Description -->
+            <TextView
+                android:id="@+id/short_descriptiontitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Short Description"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textSize="20sp" />
             <TextView
                 android:id="@+id/short_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:padding="8dp"
-                android:text="Short Description"
+
                 android:textSize="25sp"
-                android:minHeight="40dp" />
+                android:background="@drawable/text_underline" />
+
 
             <!-- Hobbies/Interest -->
+            <TextView
+                android:id="@+id/hobbies_interesttitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Hobbies/Interest"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textSize="20sp" />
             <TextView
                 android:id="@+id/hobbies_interest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:padding="8dp"
-                android:text="Hobbies/Interest"
                 android:textSize="25sp"
-                android:minHeight="40dp" />
+                android:background="@drawable/text_underline" />
 
             <!-- Location -->
+            <TextView
+                android:id="@+id/locationtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Location"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textSize="20sp" />
             <TextView
                 android:id="@+id/location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:padding="8dp"
-                android:text="Location"
                 android:textSize="25sp"
-                android:minHeight="40dp" />
+                android:background="@drawable/text_underline" />
 
         </LinearLayout>
     </ScrollView>

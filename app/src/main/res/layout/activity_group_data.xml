@@ -1,0 +1,77 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Your existing layout content -->
+
+        <EditText
+            android:id="@+id/groupDescriptionEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Group Description" />
+
+        <!-- Rest of the views -->
+
+        <EditText
+            android:id="@+id/timeStartEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time Start" />
+
+        <EditText
+            android:id="@+id/timeEndEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time End" />
+
+        <EditText
+            android:id="@+id/eatingLocationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Eating Location" />
+
+        <EditText
+            android:id="@+id/meetingLocationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Meeting Location" />
+
+        <EditText
+            android:id="@+id/specialRequestEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Special Requests" />
+
+        <!-- Add a container for demo_item_view -->
+        <ListView
+            android:id="@+id/groupListView"
+            android:layout_width="match_parent"
+            android:layout_height="165dp" />
+
+        <Button
+            android:id="@+id/createGroupButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create Group" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- Include demo_item_view.xml here -->
+            <include layout="@layout/demo_item_view" />
+
+            <!-- Add more demo_item_view.xml instances here if needed -->
+            <include layout="@layout/demo_item_view" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

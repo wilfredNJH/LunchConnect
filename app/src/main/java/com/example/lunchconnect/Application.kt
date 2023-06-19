@@ -4,7 +4,7 @@ package com.example.lunchconnect
 
 import android.app.Application
 
-class AndroidGettingStartedApplication : Application() {
+class AndroidGettingStartedApplication : GMapApplication() {
 
     override fun onCreate() {
         super.onCreate()

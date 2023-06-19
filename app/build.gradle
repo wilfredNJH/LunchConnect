@@ -2,11 +2,15 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android-extensions' //  <== add this line
+
+    // Google Map
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+
 }
 
 android {
     namespace 'com.example.lunchconnect'
-    compileSdk 33
+    compileSdk 33 // Ensure that compileSdk is set to 31 or higher and minSdk is set to 19 or higher.
 
     defaultConfig {
         applicationId "com.example.lunchconnect"
@@ -44,6 +48,8 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.1'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.1'
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+    implementation 'com.google.android.libraries.places:places:2.5.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -56,4 +62,10 @@ dependencies {
     implementation 'com.amplifyframework:core:2.8.4'
     implementation 'com.amplifyframework:aws-api:2.8.4'
     implementation 'com.amplifyframework:aws-auth-cognito:2.8.4'
+
+    // Include Places SDK for Android
+    // implementation 'com.google.android.libraries.places:places:2.6.0'
+    // Places SDK for Android KTX Library
+    implementation 'com.google.maps.android:places-ktx:2.0.0'
+    implementation 'com.amplifyframework:aws-storage-s3:2.8.4'
 }

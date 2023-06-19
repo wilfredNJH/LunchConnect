@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="groupDescriptionTextView" type="id" />
+    <item name="timeStartTextView" type="id" />
+    <item name="timeEndTextView" type="id" />
+    <item name="eatingLocationTextView" type="id" />
+    <item name="meetingLocationTextView" type="id" />
+    <item name="specialRequestEditText" type="id" />
+    <item name="deleteGroupButton" type="id" />
+</resources>

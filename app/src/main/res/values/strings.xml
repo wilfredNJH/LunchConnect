@@ -9,7 +9,7 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-
+    <string name="title_activity_maps">MapsActivity</string>
 
     <string name="user_profile_management">User Profile Management</string>
     <string name="user_profile">User Profile</string>
@@ -27,5 +27,24 @@
     <string name="points_and_badges_points_description">LunchConnect Points</string>
     <string name="points_and_badges_view_point_history">View my point history >></string>
     <string name="points_and_badges_badges_header">Badges for the winner!</string>
+    <!-- Strings used for Google Map Api -->
+    <string name="details_demo_title">Place Details</string>
+    <string name="details_demo_description">Fetch and display selected details about a Place</string>
+    <string name="autocomplete_fragment_demo_title">Place Autocomplete</string>
+    <string name="autocomplete_fragment_demo_description">Provide type-ahead predictions of Places as the user types in an input field.</string>
+    <string name="current_demo_title">Current Place</string>
+    <string name="current_demo_description">Suggest possible places that match the device\'s current location</string>
+    <string name="button_details">Get Details</string>
+    <string name="details_input_hint">Enter a Place ID</string>
+    <string name="details_input_default">ChIJ-fIL2vnvTxkRaNUY32NGBYs</string>
+    <string name="current_button">Get Current Place</string>
+
+<!--    TODO: Change Hardcoded Questionnaire -->
+    <string name="Questionnaire1">What initially sparked your interest in this field or profession?</string>
+    <string name="Questionnaire2">What do you find most rewarding about your work?</string>
+    <string name="Questionnaire3">What are some of your hobbies or interests outside of work?</string>
+    <string name="Questionnaire4">What is one thing on your bucket list that you hope to accomplish someday?</string>
+    <string name="Questionnaire5">Do you enjoy any sports or physical activities? Which ones?</string>
+    <string name="Questionnaire6">What is your go-to way to relax or unwind after a busy day?</string>
 
 </resources>
