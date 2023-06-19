@@ -11,5 +11,9 @@ class AndroidGettingStartedApplication : Application() {
 
         // initialize Amplify when application is starting
         Backend.initialize(applicationContext)
+
+        // Create an instance of GMapApplication and call its onCreate() method
+//        val gMapApplication = GMapApplication()
+//        gMapApplication.onCreate()
     }
 }
