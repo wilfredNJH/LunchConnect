@@ -21,22 +21,28 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <Button
-        android:id="@+id/button_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Profile"
-        android:layout_below="@id/appBarLayout"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="16dp" />
 
-    <include layout="@layout/content_main" />
+
+    <ImageView
+        android:id="@+id/profile_main"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/star"
+        android:background="@drawable/ripple_effect"
+        android:clickable="true"
+        android:focusable="true"/>
+
+
+
+   <include layout="@layout/content_main" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_marginTop="100dp"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:visibility="invisible"
