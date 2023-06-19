@@ -17,5 +17,11 @@ export type AmplifyDependentResourcesAttributes = {
       "UserPoolId": "string",
       "UserPoolName": "string"
     }
+  },
+  "storage": {
+    "lunchconnect": {
+      "BucketName": "string",
+      "Region": "string"
+    }
   }
 }

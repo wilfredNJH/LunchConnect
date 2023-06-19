@@ -78,11 +78,24 @@ object UserData {
                 .id(this.id)
                 .build()
 
+        /*
+        To load images, we modify the static from method on the Note data class. That way, every time a NoteData object returned
+        by the API is converted to a Note object, the image is loaded in parallel. When the image is loaded,
+        we notify the LiveData's UserData to let observers know about the change. This triggers a UI refresh.
+         */
         // static function to create a Note from a NoteData API object
         companion object {
             fun from(noteData : NoteData) : Note {
                 val result = Note(noteData.id, noteData.name, noteData.description, noteData.image)
-                // some additional code will come here later
+
+                if (noteData.image != null) {
+                    Backend.retrieveImage(noteData.image!!) {
+                        result.image = it
+
+                        // force a UI update
+                        with(UserData) { notifyObserver() }
+                    }
+                }
                 return result
             }
         }
