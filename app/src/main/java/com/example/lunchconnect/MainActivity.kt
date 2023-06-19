@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
 
 
         questionnaire.setOnClickListener {
-            val intent = Intent(this, Questionnaire::class.java)
+            val intent = Intent(this, Groups::class.java)
             startActivity(intent)
         }
 

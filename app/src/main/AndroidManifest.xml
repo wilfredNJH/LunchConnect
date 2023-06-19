@@ -17,7 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LunchConnect.NoActionBar"
         tools:targetApi="31">
-
+        <activity
+            android:name=".Groups"
+            android:exported="false" />
         <activity
             android:name=".PointsAndBadges"
             android:exported="false" />
@@ -36,8 +38,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
-
         <activity
             android:name=".StringUtil"
             android:exported="false">
@@ -45,7 +45,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".GroupData"
             android:exported="false">
@@ -62,7 +61,6 @@
             android:name=".GMapActivity"
             android:exported="false"
             android:label="@string/title_activity_maps" />
-
         <activity
             android:name=".GMapDemo"
             android:exported="false">
@@ -70,7 +68,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name="com.amplifyframework.auth.cognito.activities.HostedUIRedirectActivity"
             android:exported="true">
@@ -91,15 +88,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.lunchconnect.MainActivity" />
         </activity>
-
         <activity android:name=".ProfileActivity" />
         <activity android:name=".GMapAutocompleteActivity" />
         <activity android:name=".GMapCurrentPlaceActivity" />
         <activity android:name=".GMapDetailsActivity" />
-
         <activity android:name=".Questionnaire" />
-
-
     </application>
 
 </manifest>

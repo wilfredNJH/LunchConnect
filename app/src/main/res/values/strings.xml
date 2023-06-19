@@ -27,6 +27,22 @@
     <string name="points_and_badges_points_description">LunchConnect Points</string>
     <string name="points_and_badges_view_point_history">View my point history >></string>
     <string name="points_and_badges_badges_header">Badges for the winner!</string>
+
+    <string name="groups_header">Groups</string>
+    <string name="groups_sub_header">Groups Near Me</string>
+    <string name="groups_add_group">Navigates to the add group page.</string>
+    <string name="groups_groups_google_map">Google maps api</string>
+    <string name="groups_groups_view_scroll">Container to hold all existing groups.</string>
+    <string name="groups_groups_card_group_name">[Group Name]</string>
+    <string name="groups_groups_card_group_creator">[Created by Creator]</string>
+    <string name="groups_groups_card_food_genre">Mexican</string>
+    <string name="groups_groups_card_time_stamp">1.00 PM - 2.00 PM</string>
+    <string name="groups_groups_card_group_description_header">Description:</string>
+    <string name="groups_groups_card_group_description">Going to eat mexican at Guzman Y Gomez today! All are welcome, feel free to join!</string>
+    <string name="groups_groups_card_group_who_coming">Who\'s Coming:</string>
+    <string name="groups_groups_card_join">JOIN</string>
+    <string name="groups_groups_card_info">INFO</string>
+
     <!-- Strings used for Google Map Api -->
     <string name="details_demo_title">Place Details</string>
     <string name="details_demo_description">Fetch and display selected details about a Place</string>
@@ -39,7 +55,7 @@
     <string name="details_input_default">ChIJ-fIL2vnvTxkRaNUY32NGBYs</string>
     <string name="current_button">Get Current Place</string>
 
-<!--    TODO: Change Hardcoded Questionnaire -->
+    <!--    TODO: Change Hardcoded Questionnaire -->
     <string name="Questionnaire1">What initially sparked your interest in this field or profession?</string>
     <string name="Questionnaire2">What do you find most rewarding about your work?</string>
     <string name="Questionnaire3">What are some of your hobbies or interests outside of work?</string>

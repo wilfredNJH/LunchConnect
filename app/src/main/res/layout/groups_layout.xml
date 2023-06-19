@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:background="@drawable/rounded_background"
+    android:backgroundTint="@color/pastelGreen"
+    android:alpha="0.9">
+
+    <ImageView
+        android:id="@+id/iv_groupsCardBG"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        app:layout_constraintBottom_toTopOf="@id/ll_groupsHiddenInfo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/circle_shape" />
+
+    <ImageView
+        android:id="@+id/iv_groupsCardPic"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_groupsCardBG"
+        app:layout_constraintEnd_toEndOf="@+id/iv_groupsCardBG"
+        app:layout_constraintStart_toStartOf="@+id/iv_groupsCardBG"
+        app:layout_constraintTop_toTopOf="@+id/iv_groupsCardBG"
+        app:srcCompat="@drawable/people_01" />
+
+    <TextView
+        android:id="@+id/tv_groupsCardGroupName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="@string/groups_groups_card_group_name"
+        android:textColor="@color/darkPurple"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/btn_groupsJoin"
+        app:layout_constraintStart_toEndOf="@+id/iv_groupsCardBG"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_groupsCardCreator"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="@string/groups_groups_card_group_creator"
+        android:textColor="@color/darkPurple"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/btn_groupsJoin"
+        app:layout_constraintStart_toEndOf="@+id/iv_groupsCardBG"
+        app:layout_constraintTop_toBottomOf="@+id/tv_groupsCardGroupName" />
+
+    <TextView
+        android:id="@+id/tv_groupsCardFoodGenre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:background="@color/dirtyGold"
+        android:text="@string/groups_groups_card_food_genre"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@id/ll_groupsHiddenInfo"
+        app:layout_constraintStart_toEndOf="@+id/iv_groupsCardBG"
+        app:layout_constraintTop_toBottomOf="@+id/tv_groupsCardCreator" />
+
+    <TextView
+        android:id="@+id/tv_groupsCardTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:background="@color/colorGray"
+        android:text="@string/groups_groups_card_time_stamp"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/ll_groupsHiddenInfo"
+        app:layout_constraintStart_toEndOf="@+id/tv_groupsCardFoodGenre"
+        app:layout_constraintTop_toBottomOf="@+id/tv_groupsCardCreator" />
+
+    <Button
+        android:id="@+id/btn_groupsJoin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/groups_groups_card_join"
+        android:textStyle="bold"
+        android:textColor="@color/pastelGreen"
+        android:backgroundTint="@color/darkPurple"
+        app:layout_constraintBottom_toTopOf="@+id/btn_groupsInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_groupsInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/darkPurple"
+        android:text="@string/groups_groups_card_info"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/ll_groupsHiddenInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btn_groupsJoin" />
+
+    <LinearLayout
+        android:id="@+id/ll_groupsHiddenInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="gone">
+
+        <View
+            android:id="@+id/divider_groups1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?android:attr/listDivider"
+            android:backgroundTint="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_groupsCardDescriptionHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/groups_groups_card_group_description_header"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_groupsCardDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:text="@string/groups_groups_card_group_description"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <View
+            android:id="@+id/divider_groups2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?android:attr/listDivider"
+            android:backgroundTint="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_groupsCardMemberHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/groups_groups_card_group_who_coming"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/ll_groupsCardMembers"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" />
+        </HorizontalScrollView>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
