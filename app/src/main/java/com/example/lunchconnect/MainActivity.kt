@@ -5,7 +5,6 @@ the main layout is a RecyclerView that manages the list of individual cells we c
 the main activity class observes changes on the list of Notes and creates an NoteRecyclerViewAdapter to create individual cells.
 
  */
-
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -14,33 +13,21 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.ButtonBarLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_main.*
-
-   
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var toolbar: Toolbar
-    private lateinit var itemList: RecyclerView
-    private lateinit var button: Button
+    private lateinit var profile: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        setupRecyclerView(itemList)
-
-        // Assuming you have a button or any other trigger to start MapsActivity
-        button = findViewById(R.id.buttonGoogleMap)
-        button.setOnClickListener {
-            val intent = Intent(this, MapsActivity::class.java)
-            startActivity(intent)
-        }
 
         // prepare our List view and RecyclerView (cells)
         setupRecyclerView(item_list)
@@ -126,5 +113,4 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "MainActivity"
     }
-
 }
