@@ -16,10 +16,14 @@ import org.w3c.dom.Text
 
 class PointsAndBadges : AppCompatActivity() {
 
+    // read tier map as: p < 100 is tier 1, 100 < p < 200 is tier 2
+    val tierMap = mapOf(1 to 100, 2 to 200, 3 to 300, 4 to 400)
+
     // here's where can link cloud data to the page
     private fun initializeUserData() {
         // set some points
-        setPoints(getPoints())
+//        setPoints(getPointsFromCloud())
+        setPoints(128)
         // some code to load badges from database
         addBadge(R.drawable.badge_heart, "its a heart")
         addBadge(R.drawable.badge_chest, "this a bomb")
@@ -30,8 +34,6 @@ class PointsAndBadges : AppCompatActivity() {
     private lateinit var backButton: ImageButton
 
     // progress bar
-    // read tier map as: p < 100 is tier 1, 100 < p < 200 is tier 2
-    val tierMap = mapOf(1 to 100, 2 to 200, 3 to 300, 4 to 400)
     private lateinit var progressBar : ProgressBar
     private lateinit var progressDescription : TextView
     private lateinit var pointsDisplay : TextView
@@ -75,7 +77,7 @@ class PointsAndBadges : AppCompatActivity() {
         badgeContainer.addView(badgeLayout)
     }
 
-    private fun getPoints() : Int {
+    private fun getPointsFromCloud() : Int {
         return 245
     }
 

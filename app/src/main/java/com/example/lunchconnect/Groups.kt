@@ -16,7 +16,6 @@ class Groups : AppCompatActivity() {
 
     private fun initialize() {
         // add random groups for now
-        groupContainer = findViewById(R.id.ll_groupsContainer)
         addGroup("Manegerial Munchers", "Karen", 13.00f, 14.00f, "MALA", "Gossip about the newbies in the company.")
         addGroup("Friendly Group", "Ragesh", 13.30f, 15.00f, "MEXICAN", "All are welcome, lets have a nice meal. Eating mexican at gyg.")
         addGroup("Team Lead Lunch Bunch", "Yi Chun", 12.00f, 14.00f, "COFFEE SHOP", "Need help with challenges faced in current project.")
@@ -44,6 +43,8 @@ class Groups : AppCompatActivity() {
             val intent = Intent(this, GroupData::class.java)
             startActivity(intent)
         }
+
+        groupContainer = findViewById(R.id.ll_groupsContainer)
 
         // initialize
         initialize()
