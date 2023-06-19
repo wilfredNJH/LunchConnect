@@ -40,6 +40,7 @@ import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.libraries.places.ktx.api.net.awaitFindCurrentPlace
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
+import com.google.android.libraries.places.api.model.TypeFilter
 
 @ExperimentalCoroutinesApi
 class GMapCurrentPlaceActivity : AppCompatActivity() {
@@ -139,6 +140,7 @@ class GMapCurrentPlaceActivity : AppCompatActivity() {
 
         // Use the builder to create a FindCurrentPlaceRequest.
         val request: FindCurrentPlaceRequest = FindCurrentPlaceRequest.newInstance(placeFields)
+
 
         // Call findCurrentPlace and handle the response (first check that the user has granted permission).
         if (ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) ==

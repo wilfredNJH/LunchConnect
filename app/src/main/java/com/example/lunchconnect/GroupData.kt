@@ -1,53 +1,61 @@
 package com.example.lunchconnect
-/*
- * Copyright 2022 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 
 class GroupData : AppCompatActivity() {
 
+    private lateinit var groupDescriptionEditText: EditText
+    private lateinit var timeStartEditText: EditText
+    private lateinit var timeEndEditText: EditText
+    private lateinit var eatingLocationEditText: EditText
+    private lateinit var meetingLocationEditText: EditText
+    private lateinit var specialRequestEditText: EditText
+    private lateinit var createGroupButton: Button
+    private lateinit var groupListView: ListView
+    private lateinit var groupListAdapter: ArrayAdapter<String>
+    private var groupList: ArrayList<String> = ArrayList()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_group_data)
 
-        // List the available demos
-        val listView = ListView(this).also {
-            it.layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-            )
-            it.adapter = DemoAdapter(this, GMapDemo.values())
-            it.onItemClickListener = AdapterView.OnItemClickListener { parent, _, position, _ ->
-                val demo = parent.adapter.getItem(position) as? GMapDemo
-                demo?.let {
-                    startActivity(Intent(this, demo.activity))
-                }
+        groupDescriptionEditText = findViewById(R.id.groupDescriptionEditText)
+        timeStartEditText = findViewById(R.id.timeStartEditText)
+        timeEndEditText = findViewById(R.id.timeEndEditText)
+        eatingLocationEditText = findViewById(R.id.eatingLocationEditText)
+        meetingLocationEditText = findViewById(R.id.meetingLocationEditText)
+        specialRequestEditText = findViewById(R.id.specialRequestEditText)
+        createGroupButton = findViewById(R.id.createGroupButton)
+        groupListView = findViewById(R.id.groupListView)
+
+        createGroupButton.setOnClickListener {
+            createGroup()
+        }
+
+        groupListAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, groupList)
+        groupListView.adapter = groupListAdapter
+
+
+        val demoAdapter = DemoAdapter(this, GMapDemo.values())
+        groupListView.adapter = demoAdapter
+        groupListView.onItemClickListener = AdapterView.OnItemClickListener { parent, _, position, _ ->
+            val demo = parent.adapter.getItem(position) as? GMapDemo
+            demo?.let {
+                startActivity(Intent(this, demo.activity))
             }
         }
-        setContentView(listView)
     }
 
     private class DemoAdapter(context: Context, demos: Array<GMapDemo>) :
-            ArrayAdapter<GMapDemo>(context, R.layout.activity_group_data, demos) {
+            ArrayAdapter<GMapDemo>(context, R.layout.demo_item_view, demos) {
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
             val demoView = (convertView as? DemoItemView) ?: DemoItemView(context)
@@ -57,17 +65,48 @@ class GroupData : AppCompatActivity() {
                 it.description.setText(demo?.description ?: 0)
             }
         }
+
     }
 
     private class DemoItemView(context: Context) : LinearLayout(context) {
-
         val title: TextView by lazy { findViewById(R.id.textViewTitle) }
-
         val description: TextView by lazy { findViewById(R.id.textViewDescription) }
 
         init {
-            LayoutInflater.from(context)
-                .inflate(R.layout.activity_group_data, this)
+            LayoutInflater.from(context).inflate(R.layout.demo_item_view, this)
         }
     }
+
+    private fun createGroup() {
+        val groupDescription = groupDescriptionEditText.text.toString()
+        val timeStart = timeStartEditText.text.toString()
+        val timeEnd = timeEndEditText.text.toString()
+        val eatingLocation = eatingLocationEditText.text.toString()
+        val meetingLocation = meetingLocationEditText.text.toString()
+        val specialRequest = specialRequestEditText.text.toString()
+
+        // Check if any required field is empty
+        if (groupDescription.isEmpty() || timeStart.isEmpty() || timeEnd.isEmpty() || eatingLocation.isEmpty() || meetingLocation.isEmpty()) {
+            Toast.makeText(this, "Please fill in all the required information", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val groupSummary =
+            "Description: $groupDescription\nTime: $timeStart - $timeEnd\nEating Location: $eatingLocation\nMeeting Location: $meetingLocation\nSpecial Requests: $specialRequest"
+
+        // Log the group summary to Logcat
+        Log.d("GroupSummary", groupSummary)
+
+        groupList.add(groupSummary)
+        groupListAdapter.notifyDataSetChanged()
+
+        // Clear input fields
+        groupDescriptionEditText.text.clear()
+        timeStartEditText.text.clear()
+        timeEndEditText.text.clear()
+        eatingLocationEditText.text.clear()
+        meetingLocationEditText.text.clear()
+        specialRequestEditText.text.clear()
+    }
+
 }

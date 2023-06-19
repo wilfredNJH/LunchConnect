@@ -29,8 +29,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        GMapApplication()
-
         // prepare our List view and RecyclerView (cells)
         setupRecyclerView(item_list)
 
