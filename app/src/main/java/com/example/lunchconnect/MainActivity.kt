@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         // open when the user is authenticated and closed when the user has no session.
         setupAuthButton(UserData)
 
-        profile =findViewById(R.id.button_profile)
+//        profile =findViewById(R.id.button_profile)
         group =findViewById(R.id.buttonGroup)
 
         questionnaire = findViewById(R.id.button_questionnaire)
