@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- add these nodes between manifest and application -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -9,7 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
-        android:name="AndroidGettingStartedApplication"
+        android:name=".AndroidGettingStartedApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -18,7 +17,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LunchConnect.NoActionBar"
         tools:targetApi="31">
+        <activity
+            android:name=".GroupDatabaseActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".LoginScreenActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -34,8 +52,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
-
         <activity
             android:name=".StringUtil"
             android:exported="false">
@@ -43,7 +59,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".GroupData"
             android:exported="false">
@@ -60,7 +75,6 @@
             android:name=".GMapActivity"
             android:exported="false"
             android:label="@string/title_activity_maps" />
-
         <activity
             android:name=".GMapDemo"
             android:exported="false">
@@ -68,7 +82,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name="com.amplifyframework.auth.cognito.activities.HostedUIRedirectActivity"
             android:exported="true">
@@ -81,7 +94,6 @@
                 <data android:scheme="gettingstarted" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".AddNoteActivity"
             android:label="Add Note"
@@ -90,15 +102,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.lunchconnect.MainActivity" />
         </activity>
-
         <activity android:name=".ProfileActivity" />
         <activity android:name=".GMapAutocompleteActivity" />
         <activity android:name=".GMapCurrentPlaceActivity" />
         <activity android:name=".GMapDetailsActivity" />
-
         <activity android:name=".Questionnaire" />
-
-
     </application>
 
 </manifest>
