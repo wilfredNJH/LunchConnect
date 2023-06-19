@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
 
         profile.setOnClickListener {
-            val intent = Intent(this, ProfileActivity::class.java)
+            val intent = Intent(this, PointsAndBadges::class.java)
             startActivity(intent)
         }
 

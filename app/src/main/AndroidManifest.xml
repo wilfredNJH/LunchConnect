@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <!-- add these nodes between manifest and application  -->
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <!-- add these nodes between manifest and application -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name="AndroidGettingStartedApplication"
+        android:name=".AndroidGettingStartedApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -17,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LunchConnect"
         tools:targetApi="31">
+        <activity
+            android:name=".PointsAndBadges"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -32,7 +34,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name="com.amplifyframework.auth.cognito.activities.HostedUIRedirectActivity"
             android:exported="true">
@@ -45,7 +46,6 @@
                 <data android:scheme="gettingstarted" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".AddNoteActivity"
             android:label="Add Note"
@@ -54,11 +54,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.lunchconnect.MainActivity" />
         </activity>
-
-
         <activity android:name=".ProfileActivity" />
-
-
-
     </application>
+
 </manifest>

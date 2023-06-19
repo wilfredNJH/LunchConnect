@@ -11,8 +11,21 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
 
-
     <string name="user_profile_management">User Profile Management</string>
     <string name="user_profile">User Profile</string>
+
+    <string name="points_and_badges_back_button_description">Goes back to the main activity</string>
+    <string name="points_and_badges_profile_pic_description">Displays the users profile picture</string>
+    <string name="points_and_badges_badge_view_description">Displays the users badges</string>
+    <string name="points_and_badges_greeting1">Welcome To</string>
+    <string name="points_and_badges_greeting2">LunchConnect</string>
+    <string name="points_and_badges_view_tier_benefits">View Tier Benefits >></string>
+    <string name="points_and_badges_tier">TIER</string>
+    <string name="points_and_badges_tier_progress">Get %d more points to Tier %d</string>
+    <string name="points_and_badges_points_menu_header">You have</string>
+    <string name="points_and_badges_points_display">370</string>
+    <string name="points_and_badges_points_description">LunchConnect Points</string>
+    <string name="points_and_badges_view_point_history">View my point history >></string>
+    <string name="points_and_badges_badges_header">Badges for the winner!</string>
 
 </resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Top Line -->
+    <item>
+        <shape android:shape="line">
+            <stroke
+                android:width="2dp"
+                android:color="#000000"/> <!-- Top line color and size -->
+            <padding
+                android:left="100dp" />
+        </shape>
+    </item>
+</layer-list>

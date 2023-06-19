@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/navyBlue" /> <!-- Replace with your desired circle color -->
+    <size android:width="50dp" android:height="50dp" /> <!-- Replace with your desired circle size -->
+    <corners android:radius="25dp" /> <!-- This should be half of the size -->
+</shape>

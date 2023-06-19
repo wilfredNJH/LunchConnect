@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/violet"
+    android:orientation="vertical"
+    android:weightSum="100"
+    tools:context=".PointsAndBadges">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="30">
+
+        <ImageButton
+            android:id="@+id/ib_backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#00FFFFFF"
+            android:contentDescription="@string/points_and_badges_back_button_description"
+            android:src="?attr/homeAsUpIndicator"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_welcomeTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/points_and_badges_greeting1"
+            android:textColor="@color/darkGrey"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/tv_lunchConnect"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_lunchConnect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="15dp"
+            android:text="@string/points_and_badges_greeting2"
+            android:textColor="@color/pastelGreen"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_profilePic"
+            android:src="@drawable/people_01"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/points_and_badges_profile_pic_description"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/tv_lunchConnect"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_weight="20"
+        android:background="@drawable/rounded_background"
+        android:backgroundTint="@color/dirtyGold">
+
+        <ProgressBar
+            android:id="@+id/pb_pointsTier"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:max="300"
+            app:layout_constraintBottom_toTopOf="@+id/btn_viewTierBenefits"
+            app:layout_constraintEnd_toStartOf="@+id/iv_starRightBackground"
+            app:layout_constraintStart_toEndOf="@+id/iv_starLeftBackground"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_progressDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/points_and_badges_tier_progress"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/btn_viewTierBenefits"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pb_pointsTier" />
+
+        <Button
+            android:id="@+id/btn_viewTierBenefits"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/points_and_badges_view_tier_benefits"
+            android:textAlignment="viewStart"
+            android:backgroundTint="@color/darkPurple"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_starLeftBackground"
+            android:src="@drawable/circle_shape"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_viewTierBenefits"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_starLeft"
+            android:src="@drawable/pointstier_02"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_starLeftBackground"
+            app:layout_constraintEnd_toEndOf="@+id/iv_starLeftBackground"
+            app:layout_constraintStart_toStartOf="@+id/iv_starLeftBackground"
+            app:layout_constraintTop_toTopOf="@+id/iv_starLeftBackground" />
+
+        <TextView
+            android:id="@+id/tv_currentTier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:text="@string/points_and_badges_tier"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/btn_viewTierBenefits"
+            app:layout_constraintEnd_toEndOf="@+id/iv_starLeftBackground"
+            app:layout_constraintStart_toStartOf="@+id/iv_starLeftBackground"
+            app:layout_constraintTop_toBottomOf="@+id/iv_starLeftBackground" />
+
+        <ImageView
+            android:id="@+id/iv_starRightBackground"
+            android:src="@drawable/circle_shape"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_viewTierBenefits"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_starRight"
+            android:src="@drawable/pointstier_03"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_starRightBackground"
+            app:layout_constraintEnd_toEndOf="@+id/iv_starRightBackground"
+            app:layout_constraintStart_toStartOf="@+id/iv_starRightBackground"
+            app:layout_constraintTop_toTopOf="@+id/iv_starRightBackground" />
+
+        <TextView
+            android:id="@+id/tv_nextTier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:text="@string/points_and_badges_tier"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@+id/btn_viewTierBenefits"
+            app:layout_constraintEnd_toEndOf="@+id/iv_starRightBackground"
+            app:layout_constraintStart_toStartOf="@+id/iv_starRightBackground"
+            app:layout_constraintTop_toBottomOf="@+id/iv_starRightBackground" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:backgroundTint="#80FFFFFF">
+
+        <TextView
+            android:id="@+id/tv_youHave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/points_and_badges_points_menu_header"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_pointsDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/points_and_badges_points_display"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_youHave"/>
+
+        <TextView
+            android:id="@+id/tv_pointsDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20sp"
+            android:text="@string/points_and_badges_points_description"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_pointsDisplay"
+            app:layout_constraintStart_toEndOf="@id/tv_pointsDisplay"/>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_pointsDisplay" />
+
+        <Button
+            android:id="@+id/btn_pointHistory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="#00FFFFFF"
+            android:text="@string/points_and_badges_view_point_history"
+            android:textColor="@color/black"
+            android:textAlignment="viewStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_pointHistory" />
+
+        <Button
+            android:id="@+id/btn_earnMorePoints"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="#00FFFFFF"
+            android:text="@string/points_and_badges_view_point_history"
+            android:textColor="@color/black"
+            android:textAlignment="viewStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_badgeHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="@string/points_and_badges_badges_header"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textAlignment="center"/>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="40"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:contentDescription="@string/points_and_badges_badge_view_description"
+        android:background="@drawable/rounded_background"
+        android:backgroundTint="#80FFFFFF">
+
+        <LinearLayout
+            android:id="@+id/ll_badgeContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+
+    </HorizontalScrollView>
+</LinearLayout>
