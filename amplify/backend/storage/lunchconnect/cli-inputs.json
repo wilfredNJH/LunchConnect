@@ -1,0 +1,14 @@
+{
+  "resourceName": "lunchconnect",
+  "policyUUID": "f8507cd6",
+  "bucketName": "lunchconnecte93573a29b394ccd9eaae28f63e883a8",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

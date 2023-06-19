@@ -7,7 +7,7 @@
             "UserPoolId"
           ],
           "category": "auth",
-          "resourceName": "lunchconnect05cf8cf0"
+          "resourceName": "lunchconnectcef7e37e"
         }
       ],
       "output": {
@@ -16,7 +16,7 @@
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
-              "userPoolId": "authlunchconnect05cf8cf0"
+              "userPoolId": "authlunchconnectcef7e37e"
             }
           }
         }
@@ -26,7 +26,7 @@
     }
   },
   "auth": {
-    "lunchconnect05cf8cf0": {
+    "lunchconnectcef7e37e": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -49,6 +49,13 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
+    }
+  },
+  "storage": {
+    "lunchconnect": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
     }
   }
 }

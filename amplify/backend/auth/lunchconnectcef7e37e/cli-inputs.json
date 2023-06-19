@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "lunchconnect05cf8cf0_identitypool_05cf8cf0",
+    "identityPoolName": "lunchconnectcef7e37e_identitypool_cef7e37e",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "lunchc05cf8cf0",
-    "userPoolName": "lunchconnect05cf8cf0_userpool_05cf8cf0",
+    "resourceNameTruncated": "lunchccef7e37e",
+    "userPoolName": "lunchconnectcef7e37e_userpool_cef7e37e",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -31,14 +31,14 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "lunchc05cf8cf0_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "lunchccef7e37e_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "05cf8cf0",
-    "resourceName": "lunchconnect05cf8cf0",
+    "sharedId": "cef7e37e",
+    "resourceName": "lunchconnectcef7e37e",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "defaultSocial",
     "hostedUI": true,
-    "hostedUIDomainName": "lunchconnect05cf8cf0-05cf8cf0",
+    "hostedUIDomainName": "lunchconnectcef7e37e-cef7e37e",
     "authProvidersUserPool": [],
     "hostedUIProviderMeta": "[]",
     "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"gettingstarted://\"],\"LogoutURLs\":[\"gettingstarted://\"]}",

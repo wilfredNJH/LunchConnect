@@ -38,10 +38,28 @@
             android:inputType="textMultiLine"
             android:lines="3" />
 
+        <!-- after the description EditText -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:layout_margin="16dp"
+            android:scaleType="centerCrop" />
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />
+
+        <!-- after the Space -->
+        <Button
+            android:id="@+id/captureImage"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="#009688"
+            android:text="Add image" />
 
         <Button
             android:id="@+id/addNote"
