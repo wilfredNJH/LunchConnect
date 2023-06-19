@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-lunchconnect-dev-140237-authRole",
+      "UnauthRoleArn": "arn:aws:iam::076476990163:role/amplify-lunchconnect-dev-140237-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::076476990163:role/amplify-lunchconnect-dev-140237-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-lunchconnect-dev-140237-deployment",
+      "UnauthRoleName": "amplify-lunchconnect-dev-140237-unauthRole",
+      "StackName": "amplify-lunchconnect-dev-140237",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:076476990163:stack/amplify-lunchconnect-dev-140237/e5ec0f50-0e66-11ee-a33b-064a081b6fb6",
+      "AmplifyAppId": "d32zgkdhertyzp"
+    }
+  }
+}
