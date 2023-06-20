@@ -3,6 +3,7 @@ package com.example.lunchconnect
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -15,13 +16,23 @@ class GroupDatabaseActivity : AppCompatActivity() {
         private const val TAG = "GroupDatabaseActivity"
     }
 
+    private lateinit var fabAdd: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group_database)
 
+        // initialize the fabAdd button
+        fabAdd = findViewById(R.id.fabAdd)
+
+        Log.d(TAG, "Showing fabADD")
+        // register a click listener
+        fabAdd.setOnClickListener {
+            // to add note
+            startActivity(Intent(this, AddNoteActivity::class.java))
+        }
         // prepare our List view and RecyclerView (cells)
         setupRecyclerView(item_list)
-
     }
 
     // recycler view is the list of cells
@@ -45,5 +56,4 @@ class GroupDatabaseActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         Backend.handleWebUISignInResponse(requestCode, resultCode, data)
     }
-
 }
