@@ -14,6 +14,11 @@
     <string name="user_profile_management">User Profile Management</string>
     <string name="user_profile">User Profile</string>
 
+
+    <string name="friends">Friends</string>
+
+
+
     <string name="points_and_badges_back_button_description">Goes back to the main activity</string>
     <string name="points_and_badges_profile_pic_description">Displays the users profile picture</string>
     <string name="points_and_badges_badge_view_description">Displays the users badges</string>

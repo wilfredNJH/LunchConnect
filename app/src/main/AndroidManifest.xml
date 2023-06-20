@@ -89,6 +89,8 @@
                 android:value="com.example.lunchconnect.MainActivity" />
         </activity>
         <activity android:name=".ProfileActivity" />
+        <activity android:name=".FriendActivity" />
+
         <activity android:name=".GMapAutocompleteActivity" />
         <activity android:name=".GMapCurrentPlaceActivity" />
         <activity android:name=".GMapDetailsActivity" />

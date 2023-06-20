@@ -24,7 +24,7 @@ import java.io.FileNotFoundException
 class MainActivity : AppCompatActivity() {
 
 
-    private lateinit var profile: Button
+    private lateinit var friends: Button
     private lateinit var group: Button
     private lateinit var questionnaire: Button
 
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         group =findViewById(R.id.buttonGroup)
 
         questionnaire = findViewById(R.id.button_questionnaire)
-
+        friends = findViewById(R.id.button_friends)
         profileimage =findViewById(R.id.profile_main)
         // Load the image from internal storage
         loadImage("profile_image.png")
@@ -73,6 +73,10 @@ class MainActivity : AppCompatActivity() {
 
         questionnaire.setOnClickListener {
             val intent = Intent(this, PointsAndBadges::class.java)
+            startActivity(intent)
+        }
+        friends.setOnClickListener {
+            val intent = Intent(this, FriendActivity::class.java)
             startActivity(intent)
         }
 
@@ -154,7 +158,7 @@ class MainActivity : AppCompatActivity() {
     {
         // Load the image from internal storage
         try {
-            val bitmap = loadImageFromInternalStorage("profile_image.png")
+            val bitmap = loadImageFromInternalStorage(filename)
             if (bitmap != null) {
                 findViewById<ImageView>(R.id.profile_main).setImageBitmap(bitmap)
             }
