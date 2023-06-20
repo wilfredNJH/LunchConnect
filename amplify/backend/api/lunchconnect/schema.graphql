@@ -5,6 +5,12 @@ type NoteData
 @auth (rules: [ { allow: owner } ]) {
     id: ID!
     name: String!
+    department: String
+    jobRole: String
     description: String
+    hobbies: String
+    location: String
+    points: Int
+    badges: Int
     image: String
 }

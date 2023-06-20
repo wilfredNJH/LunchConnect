@@ -12,6 +12,8 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.shape.CornerFamily
 import kotlinx.android.synthetic.main.activity_add_note.*
+import kotlinx.android.synthetic.main.activity_add_note.name
+import kotlinx.android.synthetic.main.activity_profile.*
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -43,13 +45,20 @@ class AddNoteActivity : AppCompatActivity()  {
             .setAllCorners(CornerFamily.ROUNDED, 150.0f)
             .build()
 
+        // add note button 
         addNote.setOnClickListener {
 
             // create a note object
             val note = UserData.Note(
                 UUID.randomUUID().toString(),
-                name?.text.toString(),
-                description?.text.toString()
+                nameProfile?.text.toString(),
+                departmentProfile?.text.toString(),
+                job_role?.text.toString(),
+                short_description?.text.toString(),
+                hobbies_interest?.text.toString(),
+                location?.text.toString(),
+                        0,
+                        0
             )
 
             // addNoteACtivity.kt, inside the addNote.setOnClickListener() method and after the Note() object is created.

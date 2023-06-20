@@ -52,6 +52,15 @@ object UserData {
             Log.e(TAG, "addNote : note collection is null !!")
         }
     }
+    fun editNote(n : Note) {
+        val notes = _notes.value
+        if (notes != null) {
+            notes[0] = n // replace the first note with the new note
+            _notes.notifyObserver()
+        } else {
+            Log.e(TAG, "addNote : note collection is null !!")
+        }
+    }
     fun deleteNote(at: Int) : Note?  {
         val note = _notes.value?.removeAt(at)
         _notes.notifyObserver()
@@ -63,9 +72,38 @@ object UserData {
         _notes.notifyObserver()
     }
 
+    fun getPoints(): Int {
+        return _notes.value?.get(0)?.points?:0
+    }
+
+    fun getName(): String {
+        return _notes.value?.get(0)?.name?:""
+    }
+
+    fun getDepartment(): String {
+        return _notes.value?.get(0)?.department?:""
+    }
+
+    fun getJobRole(): String {
+        return _notes.value?.get(0)?.jobRole?:""
+    }
+
+    fun getDescription(): String {
+        return _notes.value?.get(0)?.description?:""
+    }
+
+    fun getHobbies(): String {
+        return _notes.value?.get(0)?.hobbies?:""
+    }
+
+    fun getLocation(): String {
+        return _notes.value?.get(0)?.location?:""
+    }
+
 
     // a note data class
-    data class Note(val id: String, val name: String, val description: String, var imageName: String? = null) {
+    data class Note(val id: String, val name: String,val department: String,val jobRole : String, val description: String,
+                    val hobbies: String, val location: String, val points: Int, val badges: Int,var imageName: String? = null) {
         override fun toString(): String = name
 
 
@@ -73,7 +111,13 @@ object UserData {
         val data : NoteData
             get() = NoteData.builder()
                 .name(this.name)
+                .department(this.department)
+                .jobRole(this.jobRole)
                 .description(this.description)
+                .hobbies(this.hobbies)
+                .location(this.location)
+                .points(this.points)
+                .badges(this.badges)
                 .image(this.imageName)
                 .id(this.id)
                 .build()
@@ -86,7 +130,8 @@ object UserData {
         // static function to create a Note from a NoteData API object
         companion object {
             fun from(noteData : NoteData) : Note {
-                val result = Note(noteData.id, noteData.name, noteData.description, noteData.image)
+                val result = Note(noteData.id, noteData.name,noteData.department,noteData.jobRole, noteData.description,
+                    noteData.hobbies,noteData.location,noteData.points,noteData.badges,noteData.image)
 
                 if (noteData.image != null) {
                     Backend.retrieveImage(noteData.image!!) {

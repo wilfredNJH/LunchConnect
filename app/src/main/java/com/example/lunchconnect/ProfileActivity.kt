@@ -9,10 +9,17 @@ import android.graphics.Bitmap
 import android.app.Activity
 import android.content.Context
 import android.graphics.BitmapFactory
+import android.util.Log
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.amplifyframework.api.graphql.model.ModelMutation
+import com.amplifyframework.api.graphql.model.ModelQuery
+import com.amplifyframework.core.Amplify
+import com.amplifyframework.datastore.generated.model.NoteData
+import kotlinx.android.synthetic.main.activity_profile.*
 import java.io.FileNotFoundException
+import java.util.*
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -57,12 +64,18 @@ class ProfileActivity : AppCompatActivity() {
         }
 
 
-        loadData()
+        if(isEdit){
+            loadData()
+        }else{
+            loadDataInit()
+        }
+
 
         // Set click listener for switch button
         findViewById<Button>(R.id.switch_button).setOnClickListener {
             if (isEdit) {
                 // save data
+                Log.d("editt","entered")
                 saveData()
             }
             isEdit = !isEdit
@@ -100,27 +113,76 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun saveData() {
-        val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
 
-        editor.putString("name", findViewById<EditText>(R.id.name).text.toString())
-        editor.putString("department", findViewById<EditText>(R.id.department).text.toString())
-        editor.putString("job_role", findViewById<EditText>(R.id.job_role).text.toString())
-        editor.putString("short_description", findViewById<EditText>(R.id.short_description).text.toString())
-        editor.putString("hobbies_interest", findViewById<EditText>(R.id.hobbies_interest).text.toString())
-        editor.putString("location", findViewById<EditText>(R.id.location).text.toString())
+        val innerName = findViewById<EditText>(R.id.nameProfileET).text.toString()
+        val innerDepartment = findViewById<EditText>(R.id.departmentProfileET).text.toString()
+        val innerJobRole = findViewById<EditText>(R.id.short_descriptionET).text.toString()
+        val innerDes = findViewById<EditText>(R.id.short_descriptionET).text.toString()
+        val innerHobbies = findViewById<EditText>(R.id.hobbies_interestET).text.toString()
+        val innerLocation = findViewById<EditText>(R.id.locationET).text.toString()
 
-        editor.apply()
+        // query
+        Amplify.API.query(
+            ModelQuery.list(NoteData::class.java),
+            { response ->
+                Log.i("edit note", "Queried")
+
+                for (noteData in response.data) {
+                    val newNoteData = noteData.copyOfBuilder()
+                        .name(innerName)
+                        .department(innerDepartment)
+                        .jobRole(innerJobRole)
+                        .description(innerDes)
+                        .hobbies(innerHobbies)
+                        .location(innerLocation)
+                        .build()
+
+                    Amplify.API.mutate(
+                        ModelMutation.update(newNoteData),
+                        { response ->
+                            Log.i("mutation", "Updating")
+                            if (response.hasErrors()) {
+                                Log.e("mutation", response.errors.first().message)
+                            } else {
+                                Log.i("mutation", "Updating Note with id: " + response.data.id)
+                            }
+
+                            findViewById<TextView>(R.id.nameProfile).setText(innerName)
+                            findViewById<TextView>(R.id.departmentProfile).setText(innerDepartment)
+                            findViewById<TextView>(R.id.job_role).setText(innerJobRole)
+                            findViewById<TextView>(R.id.short_description).setText(innerDes)
+                            findViewById<TextView>(R.id.hobbies_interest).setText(innerHobbies)
+                            findViewById<TextView>(R.id.location).setText(innerLocation)
+                        },
+                        { error -> Log.e("mutation", "Updating failed", error) }
+                    )
+
+                    // add it to UserData, this will trigger a UI refresh
+                    UserData.editNote(UserData.Note.from(newNoteData))
+                }
+            },
+            { error -> Log.e("edit note ", "Query failure", error) }
+        )
+
     }
     private fun loadData() {
-        val sharedPreferences = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
 
-        findViewById<TextView>(R.id.name).setText(sharedPreferences.getString("name", ""))
-        findViewById<TextView>(R.id.department).setText(sharedPreferences.getString("department", ""))
-        findViewById<TextView>(R.id.job_role).setText(sharedPreferences.getString("job_role", ""))
-        findViewById<TextView>(R.id.short_description).setText(sharedPreferences.getString("short_description", ""))
-        findViewById<TextView>(R.id.hobbies_interest).setText(sharedPreferences.getString("hobbies_interest", ""))
-        findViewById<TextView>(R.id.location).setText(sharedPreferences.getString("location", ""))
+        findViewById<EditText>(R.id.nameProfileET).setText(UserData.getName())
+        findViewById<EditText>(R.id.departmentProfileET).setText(UserData.getDepartment())
+        findViewById<EditText>(R.id.job_roleET).setText(UserData.getJobRole())
+        findViewById<EditText>(R.id.short_descriptionET).setText(UserData.getDescription())
+        findViewById<EditText>(R.id.hobbies_interestET).setText(UserData.getHobbies())
+        findViewById<EditText>(R.id.locationET).setText(UserData.getLocation())
+    }
+
+    private fun loadDataInit() {
+
+        findViewById<TextView>(R.id.nameProfile).setText(UserData.getName())
+        findViewById<TextView>(R.id.departmentProfile).setText(UserData.getDepartment())
+        findViewById<TextView>(R.id.job_role).setText(UserData.getJobRole())
+        findViewById<TextView>(R.id.short_description).setText(UserData.getDescription())
+        findViewById<TextView>(R.id.hobbies_interest).setText(UserData.getHobbies())
+        findViewById<TextView>(R.id.location).setText(UserData.getLocation())
     }
 
 

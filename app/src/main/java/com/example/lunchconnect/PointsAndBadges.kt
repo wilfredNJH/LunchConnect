@@ -22,8 +22,7 @@ class PointsAndBadges : AppCompatActivity() {
     // here's where can link cloud data to the page
     private fun initializeUserData() {
         // set some points
-//        setPoints(getPointsFromCloud())
-        setPoints(128)
+        setPoints(getPointsFromCloud())
         // some code to load badges from database
         addBadge(R.drawable.badge_heart, "its a heart")
         addBadge(R.drawable.badge_chest, "this a bomb")
@@ -78,7 +77,7 @@ class PointsAndBadges : AppCompatActivity() {
     }
 
     private fun getPointsFromCloud() : Int {
-        return 245
+        return UserData.getPoints()
     }
 
     private fun setPoints(points: Int) {
