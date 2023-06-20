@@ -26,10 +26,7 @@ class ProfileActivity : AppCompatActivity() {
         val buttonLogout: Button = findViewById(R.id.buttonLogout)
         buttonLogout.setOnClickListener {
             Backend.signOut()
-            // Go to Login Page
-            val intent = Intent(this, LoginScreenActivity::class.java)
-            startActivity(intent)
-            finish() // Optional: Finish the current activity if you don't want to go back to it
+            finishAffinity()
         }
     }
 
