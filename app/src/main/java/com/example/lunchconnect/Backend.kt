@@ -171,10 +171,22 @@ object Backend {
     fun signIn(callingActivity: Activity) {
         Log.i(TAG, "Initiate Signin Sequence")
 
-        Amplify.Auth.signInWithWebUI(
-            callingActivity,
-            { result: AuthSignInResult ->  Log.i(TAG, result.toString()) },
-            { error: AuthException -> Log.e(TAG, error.toString()) }
+        // if signed in, sign out first
+        Amplify.Auth.getCurrentUser(
+            {
+                signOut()
+                Amplify.Auth.signInWithWebUI(
+                    callingActivity,
+                    { result: AuthSignInResult ->  Log.i(TAG, result.toString()) },
+                    { error: AuthException -> Log.e(TAG, error.toString()) }
+                )
+            },{
+                Amplify.Auth.signInWithWebUI(
+                    callingActivity,
+                    { result: AuthSignInResult ->  Log.i(TAG, result.toString()) },
+                    { error: AuthException -> Log.e(TAG, error.toString()) }
+                )
+            }
         )
     }
 
