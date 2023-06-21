@@ -80,11 +80,11 @@ class ProfileActivity : AppCompatActivity() {
         }
 
 
-//        if(isEdit){
-//            loadData()
-//        }else{
-//            loadDataInit()
-//        }
+        if(isEdit){
+            loadData()
+        }else{
+            loadDataInit()
+        }
 
 
         // Set click listener for switch button
@@ -92,7 +92,7 @@ class ProfileActivity : AppCompatActivity() {
             if (isEdit) {
                 // save data
                 Log.d("editt","entered")
-               // saveData()
+                saveData()
             }
             isEdit = !isEdit
             setLayout()

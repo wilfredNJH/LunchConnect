@@ -69,7 +69,7 @@
                     </LinearLayout>
                 <TextView
                     android:id="@+id/nameProfile"
-                    android:layout_width="wrap_content"
+                    android:layout_width="230dp"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
                     android:textSize="25sp"
