@@ -1,8 +1,6 @@
 package com.example.lunchconnect
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
 import android.content.Intent
 import android.provider.MediaStore
 import android.graphics.Bitmap
@@ -13,8 +11,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.util.Log
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.amplifyframework.api.graphql.model.ModelMutation
 import com.amplifyframework.api.graphql.model.ModelQuery
@@ -62,8 +59,6 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun setLayout() {
-
-
         if (isEdit) {
             setContentView(R.layout.activity_profile_edit)
 
@@ -85,6 +80,20 @@ class ProfileActivity : AppCompatActivity() {
         }else{
             loadDataInit()
         }
+
+        // Edit Button
+//        val imageViewButtonEdit = findViewById<ImageView>(R.id.imageView_button_edit)
+//        imageViewButtonEdit.setOnClickListener {
+//            Toast.makeText(this, "Edit Button clicked!", Toast.LENGTH_SHORT).show()
+//            if (isEdit) {
+//                // save data
+//                Log.d("editt","entered")
+//                saveData()
+//            }
+//            isEdit = !isEdit
+//            setLayout()
+//        }
+
 
 
         // Set click listener for switch button

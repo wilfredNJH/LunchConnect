@@ -6,14 +6,14 @@
         </shape>
     </item>
     <item
-        android:top="-2dp"
-        android:right="-2dp"
-        android:left="-2dp"
+        android:top="-6dp"
+        android:right="-6dp"
+        android:left="-6dp"
         android:bottom="0dp">
         <shape android:shape="rectangle" >
             <stroke
                 android:width="1dp"
-                android:color="@android:color/black" />
+                android:color="@color/darkPurple" />
         </shape>
     </item>
 </layer-list>

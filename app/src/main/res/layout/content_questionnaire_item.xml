@@ -8,6 +8,7 @@
         android:id="@+id/questionText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:layout_weight="1"
         android:textSize="16sp" />
 

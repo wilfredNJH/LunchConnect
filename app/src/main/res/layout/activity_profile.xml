@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_purple_10">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -11,67 +13,68 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp"
-            >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
-
-                <!-- User Profile Image -->
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/profile_image"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/star" /> <!-- placeholder image -->
-
-                <!-- Spacer View -->
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <!-- Edit Button -->
-                <Button
-                    android:id="@+id/switch_button"
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="end"
-                    android:text="Edit"
-                    android:textSize="20sp" />
-            </LinearLayout>
-
+            android:padding="8dp">
 
             <!-- User Profile Management & Badges -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:padding="8dp"
-                android:text="@string/user_profile"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="30sp"
-
-                />
 
             <!-- Name -->
+
+            <Button
+                android:id="@+id/switch_button"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end"
+                android:text="Edit"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/pastelGreen"/>
+
+<!--            <ImageView-->
+<!--                android:id="@+id/imageView_button_edit"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="end"-->
+<!--                app:srcCompat="@drawable/button_edit" />-->
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <!-- Add the background shape or image -->
+                <ImageView
+                    android:layout_width="186dp"
+                    android:layout_height="151dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/shape_circle_white" />
+
+                <!-- Add the ShapeableImageView on top of the background -->
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="151dp"
+                    android:layout_height="132dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/star" />
+
+            </FrameLayout>
+
             <TextView
                 android:id="@+id/nametitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Name"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:textSize="20sp" />
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
             <TextView
                 android:id="@+id/nameProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:textSize="25sp"
+                android:textColor="@color/white"
                 android:background="@drawable/text_underline"
                 />
 
@@ -82,13 +85,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Department"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:textSize="20sp" />
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
             <TextView
                 android:id="@+id/departmentProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:padding="8dp"
                 android:textSize="25sp"
                 android:background="@drawable/text_underline"
@@ -101,15 +106,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Job Role"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:textSize="20sp" />
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
             <TextView
                 android:id="@+id/job_role"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:textSize="25sp"
+                android:textColor="@color/white"
                 android:background="@drawable/text_underline" />
 
             <!-- Short Description -->
@@ -119,18 +126,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Short Description"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:textSize="20sp" />
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
             <TextView
                 android:id="@+id/short_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-
+                android:textColor="@color/white"
                 android:textSize="25sp"
                 android:background="@drawable/text_underline" />
-
 
             <!-- Hobbies/Interest -->
             <TextView
@@ -139,15 +146,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Hobbies/Interest"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:textSize="20sp" />
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
             <TextView
                 android:id="@+id/hobbies_interest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:textSize="25sp"
+                android:textColor="@color/white"
                 android:background="@drawable/text_underline" />
 
             <!-- Location -->
@@ -157,15 +166,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Location"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:textSize="20sp" />
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
             <TextView
                 android:id="@+id/location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:textSize="25sp"
+                android:textColor="@color/white"
                 android:background="@drawable/text_underline" />
 
             <Button
@@ -173,6 +184,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Log Out"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/pastelGreen"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp" />
 
