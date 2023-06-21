@@ -29,6 +29,12 @@ class ProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setLayout()
+
+        val buttonLogout: Button = findViewById(R.id.buttonLogout)
+        buttonLogout.setOnClickListener {
+            Backend.signOut()
+            finishAffinity()
+        }
     }
 
     override fun onDestroy() {
@@ -36,7 +42,6 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun setLayout() {
-
 
 
         if (isEdit) {

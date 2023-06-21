@@ -65,7 +65,6 @@ class GroupData : AppCompatActivity() {
                 it.description.setText(demo?.description ?: 0)
             }
         }
-
     }
 
     private class DemoItemView(context: Context) : LinearLayout(context) {
@@ -108,5 +107,4 @@ class GroupData : AppCompatActivity() {
         meetingLocationEditText.text.clear()
         specialRequestEditText.text.clear()
     }
-
 }
