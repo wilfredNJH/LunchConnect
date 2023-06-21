@@ -29,7 +29,7 @@ class FriendActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setLayout()
 
-        val friendsList = listOf(
+        val friendsList = mutableListOf(
             Friend("Alice", "Software Engineer",R.drawable.people_01),
             Friend("Bob", "Data Scientist",R.drawable.people_02),
             Friend("Charlie", "Product Manager",R.drawable.people_03),
@@ -37,13 +37,30 @@ class FriendActivity : AppCompatActivity() {
         )
 
 
+
+
+
+
         viewManager = LinearLayoutManager(this)
         viewAdapter = FriendAdapter(friendsList) // You will need to pass in your actual list of friends here.
+
 
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView).apply {
             setHasFixedSize(true)
             layoutManager = viewManager
             adapter = viewAdapter
+        }
+
+        val edittext = findViewById<EditText>(R.id.edittext_friend)
+
+
+        findViewById<Button>(R.id.addfriend_button).setOnClickListener {
+
+
+            val newFriend = Friend( edittext.text.toString(), "Graphic Designer", R.drawable.people_05)
+            friendsList.add(newFriend)
+            viewAdapter.notifyItemInserted(friendsList.size - 1)
+
         }
     }
 
@@ -52,14 +69,7 @@ class FriendActivity : AppCompatActivity() {
     }
 
     private fun setLayout() {
-
         setContentView(R.layout.activity_friend)
-
-
-
-
-
-
     }
 
 

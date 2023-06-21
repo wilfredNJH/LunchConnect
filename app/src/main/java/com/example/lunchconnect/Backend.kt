@@ -175,6 +175,11 @@ object Backend {
         }
     }
 
+
+    fun getOtherUsers()
+    {
+        //Amplify.Auth.user
+    }
     fun signIn(callingActivity: Activity) {
         Log.i(TAG, "Initiate Signin Sequence")
 

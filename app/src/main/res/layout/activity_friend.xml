@@ -4,15 +4,44 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:padding="8dp"
-        android:text="@string/friends"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="30sp"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="4dp"
+            android:padding="8dp"
+            android:text="@string/friends"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="30sp"
+            />
+
+        <EditText
+            android:id="@+id/edittext_friend"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            
         />
+
+        <Button
+            android:id="@+id/addfriend_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:text="Add Friend" />
+
+
+    </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
