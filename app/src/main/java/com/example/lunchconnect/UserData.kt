@@ -66,6 +66,49 @@ object UserData {
 
     // a note data class
     data class Note(val id: String, val name: String, val description: String, var imageName: String? = null) {
+    fun getPoints(): Int {
+        return _notes.value?.get(0)?.points?:0
+    }
+
+    fun setPoints(newPoints: Int) {
+        val notes = _notes.value
+        if (notes != null && notes.isNotEmpty()) {
+            notes[0].points = newPoints
+            _notes.notifyObserver()
+        } else {
+            Log.e(TAG, "setPoints: note collection is null or empty!")
+        }
+    }
+
+
+    fun getName(): String {
+        return _notes.value?.get(0)?.name?:""
+    }
+
+    fun getDepartment(): String {
+        return _notes.value?.get(0)?.department?:""
+    }
+
+    fun getJobRole(): String {
+        return _notes.value?.get(0)?.jobRole?:""
+    }
+
+    fun getDescription(): String {
+        return _notes.value?.get(0)?.description?:""
+    }
+
+    fun getHobbies(): String {
+        return _notes.value?.get(0)?.hobbies?:""
+    }
+
+    fun getLocation(): String {
+        return _notes.value?.get(0)?.location?:""
+    }
+
+
+    // a note data class
+    data class Note(val id: String, val name: String,val department: String,val jobRole : String, val description: String,
+                    val hobbies: String, val location: String, var points: Int, val badges: Int,var imageName: String? = null) {
         override fun toString(): String = name
 
 

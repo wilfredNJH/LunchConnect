@@ -190,6 +190,47 @@ object Backend {
         )
     }
 
+    fun createIfProfileNotExist(){
+        // query and check if there already exist a note
+        Amplify.API.query(
+            ModelQuery.list(NoteData::class.java),
+            { response ->
+                Log.i(TAG, "Queried")
+                if(response.data.items.count() < 1){
+                    // create a note object
+                    val note = UserData.Note(
+                        UUID.randomUUID().toString(),
+                        "deon",
+                        "deon",
+                        "deon",
+                        "deon",
+                        "deon",
+                        "deon",
+                        0,
+                        0
+                    )
+
+//                    // addNoteACtivity.kt, inside the addNote.setOnClickListener() method and after the Note() object is created.
+//                    if (this.noteImagePath != null) {
+//                        note.imageName = UUID.randomUUID().toString()
+//                        //note.setImage(this.noteImage)
+//                        note.image = this.noteImage
+//
+//                        // asynchronously store the image (and assume it will work)
+//                        Backend.storeImage(this.noteImagePath!!, note.imageName!!)
+//                    }
+
+                    // store it in the backend
+                    Backend.createNote(note)
+
+                    // add it to UserData, this will trigger a UI refresh
+                    UserData.addNote(note)
+                }
+            },
+            { error -> Log.e(TAG, "Query failure", error) }
+        )
+    }
+
     // pass the data from web redirect to Amplify libs
     fun handleWebUISignInResponse(requestCode: Int, resultCode: Int, data: Intent?) {
         Log.d(TAG, "received requestCode : $requestCode and resultCode : $resultCode")
