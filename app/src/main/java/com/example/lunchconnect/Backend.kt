@@ -17,6 +17,7 @@ import com.amplifyframework.api.graphql.model.ModelMutation
 import com.amplifyframework.api.graphql.model.ModelQuery
 import com.amplifyframework.auth.AuthChannelEventName
 import com.amplifyframework.auth.AuthException
+import com.amplifyframework.auth.AuthUser
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin
 import com.amplifyframework.auth.cognito.AWSCognitoAuthSession
 import com.amplifyframework.auth.cognito.result.AWSCognitoAuthSignOutResult
@@ -32,8 +33,10 @@ import com.amplifyframework.storage.options.StorageDownloadFileOptions
 import com.amplifyframework.storage.options.StorageRemoveOptions
 import com.amplifyframework.storage.options.StorageUploadFileOptions
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin
+import kotlinx.android.synthetic.main.activity_profile.*
 import java.io.File
 import java.io.FileInputStream
+import java.util.*
 
 object Backend {
 
@@ -42,7 +45,7 @@ object Backend {
     // inside Backend class
     //To track the changes of authentication status, we add code to subscribe to Authentication events sent by Amplify.
     // We initialize the Hub in the Backend.initialize() method.
-    fun initialize(applicationContext: Context) : Backend {
+    fun initialize(applicationContext: Context): Backend {
         try {
             Amplify.addPlugin(AWSCognitoAuthPlugin())
             Amplify.addPlugin(AWSApiPlugin())
@@ -95,7 +98,11 @@ object Backend {
                     AuthSessionResult.Type.SUCCESS ->
                         Log.i("AuthQuickStart", "IdentityId = ${session.identityIdResult.value}")
                     AuthSessionResult.Type.FAILURE ->
-                        Log.w("AuthQuickStart", "IdentityId not found", session.identityIdResult.error)
+                        Log.w(
+                            "AuthQuickStart",
+                            "IdentityId not found",
+                            session.identityIdResult.error
+                        )
                 }
             },
             { Log.e("AuthQuickStart", "Failed to fetch session", it) }
@@ -116,14 +123,14 @@ object Backend {
      it checks if a Cognito session already exists and updates the UserData accordingly.
      */
     // change our internal state and query list of notes
-    private fun updateUserData(withSignedInStatus : Boolean) {
+    private fun updateUserData(withSignedInStatus: Boolean) {
         UserData.setSignedIn(withSignedInStatus)
 
         val notes = UserData.notes().value
         val isEmpty = notes?.isEmpty() ?: false
 
         // query notes when signed in and we do not have Notes yet
-        if (withSignedInStatus && isEmpty ) {
+        if (withSignedInStatus && isEmpty) {
             this.queryNotes()
         } else {
             UserData.resetNotes()
@@ -139,7 +146,7 @@ object Backend {
 //        )
 
         Amplify.Auth.signOut { signOutResult ->
-            when(signOutResult) {
+            when (signOutResult) {
                 is AWSCognitoAuthSignOutResult.CompleteSignOut -> {
                     // Sign Out completed fully and without errors.
                     Log.i("AuthQuickStart", "Signed out successfully")
@@ -177,15 +184,17 @@ object Backend {
                 signOut()
                 Amplify.Auth.signInWithWebUI(
                     callingActivity,
-                    { result: AuthSignInResult ->  Log.i(TAG, result.toString()) },
+                    { result: AuthSignInResult -> Log.i(TAG, result.toString()) },
                     { error: AuthException -> Log.e(TAG, error.toString()) }
                 )
-            },{
+                createIfProfileNotExist()
+            }, {
                 Amplify.Auth.signInWithWebUI(
                     callingActivity,
-                    { result: AuthSignInResult ->  Log.i(TAG, result.toString()) },
+                    { result: AuthSignInResult -> Log.i(TAG, result.toString()) },
                     { error: AuthException -> Log.e(TAG, error.toString()) }
                 )
+                createIfProfileNotExist()
             }
         )
     }
@@ -235,8 +244,8 @@ object Backend {
     fun handleWebUISignInResponse(requestCode: Int, resultCode: Int, data: Intent?) {
         Log.d(TAG, "received requestCode : $requestCode and resultCode : $resultCode")
         //if (requestCode == AWSCognitoAuthPlugin.WEB_UI_SIGN_IN_ACTIVITY_CODE) {
-            Log.d("main","entered here!!!!!!")
-            Amplify.Auth.handleWebUISignInResponse(data)
+        Log.d("main", "entered here!!!!!!")
+        Amplify.Auth.handleWebUISignInResponse(data)
         //}
     }
 
@@ -257,7 +266,7 @@ object Backend {
         )
     }
 
-    fun createNote(note : UserData.Note) {
+    fun createNote(note: UserData.Note) {
         Log.i(TAG, "Creating notes")
 
         Amplify.API.mutate(
@@ -274,7 +283,24 @@ object Backend {
         )
     }
 
-    fun deleteNote(note : UserData.Note?) {
+    fun editNote(note: UserData.Note) {
+        Log.i(TAG, "Updating notes")
+
+        Amplify.API.mutate(
+            ModelMutation.update(note.data),
+            { response ->
+                Log.i(TAG, "Updating")
+                if (response.hasErrors()) {
+                    Log.e(TAG, response.errors.first().message)
+                } else {
+                    Log.i(TAG, "Updating Note with id: " + response.data.id)
+                }
+            },
+            { error -> Log.e(TAG, "Updating failed", error) }
+        )
+    }
+
+    fun deleteNote(note: UserData.Note?) {
 
         if (note == null) return
 
@@ -319,7 +345,7 @@ object Backend {
         )
     }
 
-    fun deleteImage(key : String) {
+    fun deleteImage(key: String) {
 
         val options = StorageRemoveOptions.builder()
             .accessLevel(StorageAccessLevel.PRIVATE)
@@ -333,7 +359,7 @@ object Backend {
         )
     }
 
-    fun retrieveImage(key: String, completed : (image: Bitmap) -> Unit) {
+    fun retrieveImage(key: String, completed: (image: Bitmap) -> Unit) {
         val options = StorageDownloadFileOptions.builder()
             .accessLevel(StorageAccessLevel.PRIVATE)
             .build()

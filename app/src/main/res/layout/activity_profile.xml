@@ -67,7 +67,7 @@
                 android:paddingRight="8dp"
                 android:textSize="20sp" />
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/nameProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
@@ -86,7 +86,7 @@
                 android:paddingRight="8dp"
                 android:textSize="20sp" />
             <TextView
-                android:id="@+id/department"
+                android:id="@+id/departmentProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
