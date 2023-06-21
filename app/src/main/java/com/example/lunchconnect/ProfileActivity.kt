@@ -8,6 +8,7 @@ import android.provider.MediaStore
 import android.graphics.Bitmap
 import android.app.Activity
 import android.content.Context
+import kotlinx.coroutines.*
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.util.Log
@@ -29,6 +30,8 @@ import java.io.InputStream
 import java.util.*
 
 class ProfileActivity : AppCompatActivity() {
+    // Declare a coroutine scope as a class member
+    private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
     private var isEdit: Boolean = false
     private val PICK_IMAGE = 1
@@ -77,9 +80,6 @@ class ProfileActivity : AppCompatActivity() {
         }
 
 
-
-
-
         if(isEdit){
             loadData()
         }else{
@@ -100,18 +100,6 @@ class ProfileActivity : AppCompatActivity() {
     }
 
 
-    private fun saveImageToInternalStorage(bitmap: Bitmap, filename: String) {
-        val fos = openFileOutput(filename, Context.MODE_PRIVATE)
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos)
-        fos.close()
-    }
-    private fun loadImageFromInternalStorage(filename: String): Bitmap? {
-        val fis = openFileInput(filename)
-        val bitmap = BitmapFactory.decodeStream(fis)
-        fis.close()
-        return bitmap
-    }
-
     private fun saveData() {
 
         val innerName = findViewById<EditText>(R.id.nameProfileET).text.toString()
@@ -130,14 +118,6 @@ class ProfileActivity : AppCompatActivity() {
                 Log.i("edit note", "Queried")
 
                 for (noteData in response.data) {
-                    val newNoteData = noteData.copyOfBuilder()
-                        .name(innerName)
-                        .department(innerDepartment)
-                        .jobRole(innerJobRole)
-                        .description(innerDes)
-                        .hobbies(innerHobbies)
-                        .location(innerLocation)
-                        .build()
 
                     // getting the user data from the note
                     val userNoteData = UserData.Note.from(noteData)
@@ -151,6 +131,17 @@ class ProfileActivity : AppCompatActivity() {
                         // asynchronously store the image (and assume it will work)
                         Backend.storeImage(this.profileImagePath!!, userNoteData.imageName!!)
                     }
+
+                    val newNoteData = noteData.copyOfBuilder()
+                        .name(innerName)
+                        .department(innerDepartment)
+                        .jobRole(innerJobRole)
+                        .description(innerDes)
+                        .hobbies(innerHobbies)
+                        .location(innerLocation)
+                        .image(userNoteData.imageName)
+                        .build()
+
 
                     Amplify.API.mutate(
                         ModelMutation.update(newNoteData),
@@ -188,7 +179,53 @@ class ProfileActivity : AppCompatActivity() {
         findViewById<EditText>(R.id.short_descriptionET).setText(UserData.getDescription())
         findViewById<EditText>(R.id.hobbies_interestET).setText(UserData.getHobbies())
         findViewById<EditText>(R.id.locationET).setText(UserData.getLocation())
+
+        loadImageData()
     }
+
+    private fun loadImageData(){
+
+        // query
+        Amplify.API.query(
+            ModelQuery.list(NoteData::class.java),
+            { response ->
+                Log.i("load image", "Queried")
+
+                for (noteData in response.data) {
+                    // getting the user data from the note
+                    val userNoteData = UserData.Note.from(noteData)
+
+                    coroutineScope.launch {
+                        delay(1000) // Delay in milliseconds (2 seconds in this example)
+
+                        // Code to be executed after the delay
+                        // Write your delayed code logic here
+
+
+                        Log.d("setting image","image set load image data ")
+                        Log.i("download", "Successfully downloaded2:")
+                        if (userNoteData.image != null) {
+                            Log.i("download", "Successfully downloaded3:")
+                            Log.i("setting image", "Image loaded")
+                            profile_image.setImageBitmap(userNoteData.image)
+                        }
+                    }
+
+//                    Log.d("setting image","image set load image data ")
+//                    Log.i("download", "Successfully downloaded2:")
+//                    if (userNoteData.image != null) {
+//                        Log.i("download", "Successfully downloaded3:")
+//                        Log.i("setting image", "Image loaded")
+//                        profile_image.setImageBitmap(userNoteData.image)
+//                    }
+                }
+            },
+            { error -> Log.e("load image ", "Query failure", error) }
+        )
+
+    }
+
+
 
     private fun loadDataInit() {
 
@@ -198,6 +235,8 @@ class ProfileActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.short_description).setText(UserData.getDescription())
         findViewById<TextView>(R.id.hobbies_interest).setText(UserData.getHobbies())
         findViewById<TextView>(R.id.location).setText(UserData.getLocation())
+
+        loadImageData()
     }
 
 

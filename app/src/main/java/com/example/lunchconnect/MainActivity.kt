@@ -13,9 +13,21 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.amplifyframework.api.graphql.model.ModelQuery
+import com.amplifyframework.core.Amplify
+import com.amplifyframework.datastore.generated.model.NoteData
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.io.FileNotFoundException
 
 class MainActivity : AppCompatActivity() {
+
+    // Declare a coroutine scope as a class member
+    private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
     private lateinit var friends: Button
     private lateinit var group: Button
@@ -83,10 +95,27 @@ class MainActivity : AppCompatActivity() {
     {
         // Load the image from internal storage
         try {
-            val bitmap = loadImageFromInternalStorage(filename)
-            if (bitmap != null) {
-                findViewById<ImageView>(R.id.profile_main).setImageBitmap(bitmap)
-            }
+            // query
+            Amplify.API.query(
+                ModelQuery.list(NoteData::class.java),
+                { response ->
+                    for (noteData in response.data) {
+                        // getting the user data from the note
+                        val userNoteData = UserData.Note.from(noteData)
+
+                        coroutineScope.launch {
+                            delay(1000) // Delay in milliseconds (2 seconds in this example)
+
+                            // Code to be executed after the delay
+                            if (userNoteData.image != null) {
+                                profile_main.setImageBitmap(userNoteData.image)
+                            }
+                        }
+                    }
+                },
+                { error -> Log.e("load image ", "Query failure", error) }
+            )
+
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
             // Handle the situation when the file does not exist, perhaps by showing a default image or a toast message

@@ -12,6 +12,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.amplifyframework.datastore.generated.model.NoteData
+import kotlin.math.log
 
 // a singleton to hold user data (this is a ViewModel pattern, without inheriting from ViewModel)
 object UserData {
@@ -137,12 +138,18 @@ object UserData {
                 val result = Note(noteData.id, noteData.name,noteData.department,noteData.jobRole, noteData.description,
                     noteData.hobbies,noteData.location,noteData.points,noteData.badges,noteData.image)
 
+                Log.d("setting image","image set2")
+
+                // trying to get the image
                 if (noteData.image != null) {
+                    Log.d("setting image","image set")
                     Backend.retrieveImage(noteData.image!!) {
                         result.image = it
 
                         // force a UI update
                         with(UserData) { notifyObserver() }
+
+
                     }
                 }
                 return result
