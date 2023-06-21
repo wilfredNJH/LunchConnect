@@ -26,6 +26,10 @@ class ProfileActivity : AppCompatActivity() {
     private var isEdit: Boolean = false
     private val PICK_IMAGE = 1
 
+    // image information
+    private var profileImagePath : String? = null
+    private var profileImage : Bitmap? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setLayout()
@@ -125,6 +129,16 @@ class ProfileActivity : AppCompatActivity() {
         val innerDes = findViewById<EditText>(R.id.short_descriptionET).text.toString()
         val innerHobbies = findViewById<EditText>(R.id.hobbies_interestET).text.toString()
         val innerLocation = findViewById<EditText>(R.id.locationET).text.toString()
+
+        // inside the addNote.setOnClickListener() method and after the Note() object is created.
+//        if (this.profileImagePath != null) {
+//            note.imageName = UUID.randomUUID().toString()
+//            //note.setImage(this.noteImage)
+//            note.image = this.profileImage
+//
+//            // asynchronously store the image (and assume it will work)
+//            Backend.storeImage(this.profileImagePath!!, note.imageName!!)
+//        }
 
         // query
         Amplify.API.query(
