@@ -377,7 +377,7 @@ object Backend {
             options,
             { progress -> Log.i(TAG, "Fraction completed: ${progress.fractionCompleted}") },
             { result ->
-                Log.i(TAG, "Successfully downloaded: ${result.file.name}")
+                Log.i(TAG, "Successfully downloaded1: ${result.file.name}")
                 val imageStream = FileInputStream(file)
                 val image = BitmapFactory.decodeStream(imageStream)
                 completed(image)

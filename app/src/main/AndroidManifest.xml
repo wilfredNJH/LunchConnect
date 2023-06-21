@@ -18,23 +18,7 @@
         android:theme="@style/Theme.LunchConnect.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".Groups"
-            android:exported="false" />
-
-        <activity
-            android:name=".PointsAndBadges"
-            android:exported="false" />
-
-        <activity    
-            android:name=".GroupDatabaseActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-
-        <activity
-            android:name=".LoginScreenActivity"
+            android:name=".SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,7 +30,26 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
+        <activity
+            android:name=".Groups"
+            android:exported="false" />
+        <activity
+            android:name=".PointsAndBadges"
+            android:exported="false" />
+        <activity
+            android:name=".GroupDatabaseActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".LoginScreenActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -54,7 +57,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        
         <activity
             android:name=".StringUtil"
             android:exported="false">
@@ -62,7 +64,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".GroupData"
             android:exported="false">
@@ -79,7 +80,6 @@
             android:name=".GMapActivity"
             android:exported="false"
             android:label="@string/title_activity_maps" />
-
         <activity
             android:name=".GMapDemo"
             android:exported="false">
@@ -87,7 +87,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name="com.amplifyframework.auth.cognito.activities.HostedUIRedirectActivity"
             android:exported="true">
@@ -100,7 +99,6 @@
                 <data android:scheme="gettingstarted" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".AddNoteActivity"
             android:label="Add Note"
@@ -109,14 +107,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.lunchconnect.MainActivity" />
         </activity>
-
         <activity android:name=".ProfileActivity" />
         <activity android:name=".FriendActivity" />
         <activity android:name=".GMapAutocompleteActivity" />
         <activity android:name=".GMapCurrentPlaceActivity" />
         <activity android:name=".GMapDetailsActivity" />
         <activity android:name=".Questionnaire" />
-
     </application>
 
 </manifest>

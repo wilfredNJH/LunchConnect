@@ -35,10 +35,10 @@ class LoginScreenActivity : AppCompatActivity() {
                 // transition to main
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
-
-            } else {
-                fabAuth.setImageResource(R.drawable.ic_baseline_lock)
             }
+//            } else {
+//                fabAuth.setImageResource(R.drawable.ic_baseline_lock)
+//            }
         })
     }
 
@@ -48,13 +48,13 @@ class LoginScreenActivity : AppCompatActivity() {
         // register a click listener
         fabAuth.setOnClickListener { view ->
 
-            val authButton = view as FloatingActionButton
+//            val authButton = view as FloatingActionButton
 
             if (userData.isSignedIn.value!!) {
-                authButton.setImageResource(R.drawable.ic_baseline_lock_open)
+//                authButton.setImageResource(R.drawable.ic_baseline_lock_open)
                 signOutAndFinish()
             } else {
-                authButton.setImageResource(R.drawable.ic_baseline_lock_open)
+//                authButton.setImageResource(R.drawable.ic_baseline_lock_open)
                 Backend.signIn(this)
             }
         }
