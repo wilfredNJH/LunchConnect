@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/violet">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -11,20 +12,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:gravity="center_horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp">
+            <!-- Edit Button -->
+            <Button
+                android:id="@+id/switch_button"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="end"
+                android:text="Save"
+                android:textSize="20sp" />
+
 
                 <!-- User Profile Image -->
                 <!-- placeholder image -->
                 <ImageView
                     android:id="@+id/profile_image"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
                     android:src="@drawable/star" />
 
                 <Button
@@ -32,21 +38,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Select\n Picture" />
-                <!-- Spacer View -->
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
 
-                <!-- Edit Button -->
-                <Button
-                    android:id="@+id/switch_button"
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="end"
-                    android:text="Save"
-                    android:textSize="20sp" />
-            </LinearLayout>
+
+
+
 
 
             <!-- User Profile Management & Badges -->
@@ -54,6 +49,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:padding="8dp"
                 android:text="@string/user_profile"
                 android:textAppearance="?android:attr/textAppearanceLarge"
@@ -66,6 +63,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:text="Name"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
@@ -74,6 +73,8 @@
                 android:id="@+id/nameProfileET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:padding="8dp"
                 android:hint="Name"
                 android:textSize="25sp"
@@ -85,6 +86,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:text="Department"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
@@ -93,6 +96,8 @@
                 android:id="@+id/departmentProfileET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:hint="Department"
                 android:textSize="25sp"
                />
@@ -103,6 +108,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:text="Job Role"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
@@ -111,6 +118,8 @@
                 android:id="@+id/job_roleET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:hint="Job Role"
                 android:textSize="25sp"
                  />
@@ -121,6 +130,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:text="Short Description"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
@@ -129,6 +140,8 @@
                 android:id="@+id/short_descriptionET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:hint="Short Description"
                 android:textSize="25sp"
               />
@@ -139,6 +152,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:text="Hobbies/Interest"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
@@ -147,6 +162,8 @@
                 android:id="@+id/hobbies_interestET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:hint="Hobbies/Interest"
                 android:textSize="25sp"
                  />
@@ -157,6 +174,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:text="Location"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
@@ -165,6 +184,8 @@
                 android:id="@+id/locationET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:hint="Location"
                 android:textSize="25sp"
                />

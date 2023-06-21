@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/violet"
+    >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -25,22 +27,59 @@
                     android:id="@+id/profile_image"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
                     android:src="@drawable/star" /> <!-- placeholder image -->
 
-                <!-- Spacer View -->
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="4"
+                    android:padding="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+                <!-- Name -->
+                <TextView
+                    android:id="@+id/nametitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="Name"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:textSize="20sp" />
+
+                    <Button
+                        android:id="@+id/switch_button"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="30dp"
+                        android:text="Edit"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:background="@android:color/holo_green_light"
+                        android:textSize="15sp" />
+                    </LinearLayout>
+                <TextView
+                    android:id="@+id/nameProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:textSize="25sp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/text_underline" />
+                </LinearLayout>
+
 
                 <!-- Edit Button -->
-                <Button
-                    android:id="@+id/switch_button"
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="end"
-                    android:text="Edit"
-                    android:textSize="20sp" />
+
             </LinearLayout>
 
 
@@ -49,6 +88,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:padding="8dp"
                 android:text="@string/user_profile"
                 android:textAppearance="?android:attr/textAppearanceLarge"
@@ -56,24 +97,7 @@
 
                 />
 
-            <!-- Name -->
-            <TextView
-                android:id="@+id/nametitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Name"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:textSize="20sp" />
-            <TextView
-                android:id="@+id/nameProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:textSize="25sp"
-                android:background="@drawable/text_underline"
-                />
+
 
             <!-- Department -->
             <TextView
@@ -81,6 +105,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:text="Department"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
@@ -89,6 +115,8 @@
                 android:id="@+id/departmentProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:padding="8dp"
                 android:textSize="25sp"
                 android:background="@drawable/text_underline"
@@ -100,6 +128,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:text="Job Role"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
@@ -108,6 +138,8 @@
                 android:id="@+id/job_role"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:padding="8dp"
                 android:textSize="25sp"
                 android:background="@drawable/text_underline" />
@@ -118,6 +150,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:text="Short Description"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
@@ -127,7 +161,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:textSize="25sp"
                 android:background="@drawable/text_underline" />
 
@@ -138,6 +173,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:text="Hobbies/Interest"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
@@ -146,6 +183,8 @@
                 android:id="@+id/hobbies_interest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:padding="8dp"
                 android:textSize="25sp"
                 android:background="@drawable/text_underline" />
@@ -156,6 +195,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:text="Location"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
@@ -164,6 +205,8 @@
                 android:id="@+id/location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:padding="8dp"
                 android:textSize="25sp"
                 android:background="@drawable/text_underline" />
