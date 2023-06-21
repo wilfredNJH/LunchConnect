@@ -18,7 +18,6 @@
     <string name="friends">Friends</string>
 
 
-
     <string name="points_and_badges_back_button_description">Goes back to the main activity</string>
     <string name="points_and_badges_profile_pic_description">Displays the users profile picture</string>
     <string name="points_and_badges_badge_view_description">Displays the users badges</string>
@@ -67,5 +66,10 @@
     <string name="Questionnaire4">What is one thing on your bucket list that you hope to accomplish someday?</string>
     <string name="Questionnaire5">Do you enjoy any sports or physical activities? Which ones?</string>
     <string name="Questionnaire6">What is your go-to way to relax or unwind after a busy day?</string>
+
+    <!-- String for Login Screen-->
+    <string name="lunch_invitation">Hey, you there,\nwant to have lunch\ntogether?</string>
+
+
 
 </resources>
