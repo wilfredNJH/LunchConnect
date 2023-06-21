@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.amplifyframework.api.graphql.model.ModelQuery
 import com.amplifyframework.core.Amplify
@@ -29,12 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     // Declare a coroutine scope as a class member
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
-
-    private lateinit var friends: Button
-    private lateinit var group: Button
     private lateinit var questionnaire: Button
-    private lateinit var points: Button
-    private lateinit var groupdatabase: Button
     private lateinit var profileimage: ImageView
 
     companion object {
@@ -45,12 +41,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        group =findViewById(R.id.buttonGroup)
-        questionnaire = findViewById(R.id.button_questionnaire)
-        points = findViewById(R.id.button_points)
-        friends = findViewById(R.id.button_friends)
         profileimage = findViewById(R.id.profile_main)
-        groupdatabase = findViewById(R.id.buttonGroupDatabase)
+        questionnaire = findViewById(R.id.button_questionnaire)
 
         // Load the image from internal storage
         loadImage("profile_image.png")
@@ -60,17 +52,18 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        points.setOnClickListener {
+        val imageViewPoints: ImageView = findViewById(R.id.imageView_Points)
+        imageViewPoints.setOnClickListener {
+            // Perform your desired action when the ImageView is clicked
+            // For example, show a toast message
+            Toast.makeText(this, "Goint to Points", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, PointsAndBadges::class.java)
             startActivity(intent)
         }
 
-        friends.setOnClickListener {
-            val intent = Intent(this, FriendActivity::class.java)
-            startActivity(intent)
-        }
-
-        group.setOnClickListener {
+        val imageViewCreateGroup: ImageView = findViewById(R.id.imageView_CreateGroup)
+        imageViewCreateGroup.setOnClickListener {
+            Toast.makeText(this, "Go to Group Creation", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, GroupData::class.java)
             startActivity(intent)
         }
@@ -81,8 +74,17 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        groupdatabase.setOnClickListener {
+        val imageViewGroupDatabase: ImageView = findViewById(R.id.imageView_Group)
+        imageViewGroupDatabase.setOnClickListener {
+            Toast.makeText(this, "Go to Group Database", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, GroupDatabaseActivity::class.java)
+            startActivity(intent)
+        }
+
+        val imageViewGroupLocation: ImageView = findViewById(R.id.imageView_Location)
+        imageViewGroupLocation.setOnClickListener {
+            Toast.makeText(this, "Go to Group Location", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, Groups::class.java)
             startActivity(intent)
         }
 

@@ -46,6 +46,14 @@ class Groups : AppCompatActivity() {
 
         groupContainer = findViewById(R.id.ll_groupsContainer)
 
+        // set a image of a fake map
+        val imageView = findViewById<ImageView>(R.id.iv_groupsMapScreenShot)
+        imageView.setOnClickListener {
+            // go to actual map
+            val intent = Intent(this, GMapActivity::class.java)
+            startActivity(intent)
+        }
+
         // initialize
         initialize()
     }

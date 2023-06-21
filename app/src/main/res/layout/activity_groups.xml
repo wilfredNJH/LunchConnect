@@ -22,10 +22,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/groups_header"
-        android:textStyle="bold"
-        android:textSize="40sp"
         android:textAlignment="center"
         android:textColor="@color/white"
+        android:textSize="34sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ib_groupsBackButton" />
@@ -53,36 +53,29 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_groupsHeader" />
 
     <ImageView
-        android:id="@+id/iv_groupsTempMap"
+        android:id="@+id/iv_groupsMapScreenShot"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:background="@color/darkGrey"
+        android:background="@color/violet"
+        android:src="@drawable/ss_marinabaysands"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_groupsSubHeader" />
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:contentDescription="@string/groups_groups_google_map"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_groupsTempMap"
-        app:layout_constraintEnd_toEndOf="@+id/iv_groupsTempMap"
-        app:layout_constraintStart_toStartOf="@+id/iv_groupsTempMap"
-        app:layout_constraintTop_toBottomOf="@+id/tv_groupsSubHeader" />
 
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="409dp"
         android:layout_height="492dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:contentDescription="@string/groups_groups_view_scroll"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_groupsTempMap"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/iv_groupsMapScreenShot"
+        app:layout_constraintVertical_bias="0.469">
 
         <LinearLayout
             android:id="@+id/ll_groupsContainer"

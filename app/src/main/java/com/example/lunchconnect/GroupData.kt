@@ -43,7 +43,6 @@ class GroupData : AppCompatActivity() {
         groupListAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, groupList)
         groupListView.adapter = groupListAdapter
 
-
         val demoAdapter = DemoAdapter(this, GMapDemo.values())
         groupListView.adapter = demoAdapter
         groupListView.onItemClickListener = AdapterView.OnItemClickListener { parent, _, position, _ ->
