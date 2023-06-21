@@ -196,7 +196,7 @@ class ProfileActivity : AppCompatActivity() {
                     val userNoteData = UserData.Note.from(noteData)
 
                     coroutineScope.launch {
-                        delay(1000) // Delay in milliseconds (2 seconds in this example)
+                        delay(10000) // Delay in milliseconds (2 seconds in this example)
 
                         // Code to be executed after the delay
                         // Write your delayed code logic here
