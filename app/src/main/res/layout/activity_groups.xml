@@ -97,4 +97,27 @@
         app:srcCompat="@android:drawable/ic_menu_add"
         app:tint="@color/black"/>
 
+    <ImageButton
+        android:id="@+id/ib_groupsSyncBackend"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
+        android:contentDescription="@string/groups_add_group"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ib_groupsAddGroup"
+        app:srcCompat="@android:drawable/stat_notify_sync"
+        app:tint="@color/black"/>
+
+    <ImageButton
+        android:id="@+id/ib_groupsPopulate"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
+        android:contentDescription="@string/groups_add_group"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ib_groupsSyncBackend"
+        app:srcCompat="@android:drawable/stat_sys_upload"
+        app:tint="@color/black"/> />
+    />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

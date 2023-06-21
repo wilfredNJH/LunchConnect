@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import java.util.*
+import kotlin.collections.ArrayList
 
 class GroupData : AppCompatActivity() {
 
@@ -95,8 +97,22 @@ class GroupData : AppCompatActivity() {
         // Log the group summary to Logcat
         Log.d("GroupSummary", groupSummary)
 
-        groupList.add(groupSummary)
-        groupListAdapter.notifyDataSetChanged()
+//        groupList.add(groupSummary)
+//        groupListAdapter.notifyDataSetChanged()
+        // add group to database
+        val group = UserGroupData.GroupNote(
+            UUID.randomUUID().toString(),
+            mutableListOf(""),
+            "Yishun",
+            "",
+            ""
+        )
+
+        // store it in the backend
+        Backend.createGroup(group)
+
+        // add it to UserGroupData, this will trigger a UI refresh
+        UserGroupData.addGroup(group)
 
         // Clear input fields
         groupDescriptionEditText.text.clear()

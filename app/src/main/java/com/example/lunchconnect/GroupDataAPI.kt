@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.amplifyframework.datastore.generated.model.Group
+import kotlinx.android.synthetic.main.activity_add_note.*
 import kotlin.math.log
 
 // a singleton to hold user data (this is a ViewModel pattern, without inheriting from ViewModel)
@@ -65,6 +66,17 @@ object UserGroupData {
         _groups.notifyObserver()
     }
 
+    fun clearGroups() {
+        _groups.value?.clear()
+    }
+
+    fun addGroupsToGroups(groups: Groups) {
+        _groups.value?.forEach {
+            group ->
+            groups.addGroup(group.location,"",1.0f,1.0f,"","")
+            Log.i("TAG", group.location)
+        }
+    }
 
     // a note data class
     data class GroupNote(val id: String, val members: MutableList<String> , val location : String, val time : String,

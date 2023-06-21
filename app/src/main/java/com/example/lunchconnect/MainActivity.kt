@@ -77,14 +77,14 @@ class MainActivity : AppCompatActivity() {
         val imageViewGroupDatabase: ImageView = findViewById(R.id.imageView_Group)
         imageViewGroupDatabase.setOnClickListener {
             Toast.makeText(this, "Go to Group Database", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, GroupDatabaseActivity::class.java)
+            val intent = Intent(this, Groups::class.java)
             startActivity(intent)
         }
 
         val imageViewGroupLocation: ImageView = findViewById(R.id.imageView_Location)
         imageViewGroupLocation.setOnClickListener {
             Toast.makeText(this, "Go to Group Location", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, Groups::class.java)
+            val intent = Intent(this, GMapActivity::class.java)
             startActivity(intent)
         }
 
