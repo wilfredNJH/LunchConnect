@@ -209,12 +209,12 @@ object Backend {
                     // create a note object
                     val note = UserData.Note(
                         UUID.randomUUID().toString(),
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
+                        "deon",
+                        "deon",
+                        "deon",
+                        "deon",
+                        "deon",
+                        "deon",
                         0,
                         0
                     )

@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var friends: Button
     private lateinit var group: Button
     private lateinit var questionnaire: Button
+    private lateinit var points: Button
     private lateinit var groupdatabase: Button
     private lateinit var profileimage: ImageView
 
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         group =findViewById(R.id.buttonGroup)
         questionnaire = findViewById(R.id.button_questionnaire)
+        points = findViewById(R.id.button_points)
         friends = findViewById(R.id.button_friends)
         profileimage = findViewById(R.id.profile_main)
         groupdatabase = findViewById(R.id.buttonGroupDatabase)
@@ -54,6 +56,11 @@ class MainActivity : AppCompatActivity() {
         loadImage("profile_image.png")
 
         questionnaire.setOnClickListener {
+            val intent = Intent(this, Questionnaire::class.java)
+            startActivity(intent)
+        }
+
+        points.setOnClickListener {
             val intent = Intent(this, PointsAndBadges::class.java)
             startActivity(intent)
         }

@@ -1,6 +1,7 @@
 package com.example.lunchconnect
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,15 +9,18 @@ import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import android.widget.TextView
 
+data class ItemState(var checked: Boolean = false, var locked: Boolean = false)
+
+
 class QuestionAdapter(context: Context, questions: ArrayList<String>) :
     ArrayAdapter<String>(context, 0, questions) {
 
-    var checkedItems: ArrayList<Boolean> = ArrayList()
+    var checkedItems: ArrayList<ItemState> = ArrayList()
 
     init {
         // Initialize the checkedItems list with default values
         for (i in 0 until questions.size) {
-            checkedItems.add(false)
+            checkedItems.add(ItemState(false,false))
         }
     }
 
@@ -31,11 +35,27 @@ class QuestionAdapter(context: Context, questions: ArrayList<String>) :
 
         val question = getItem(position)
         questionText?.text = question
-        checkBox?.isChecked = checkedItems[position]
+        checkBox?.isChecked = checkedItems[position].checked
+        checkBox?.isEnabled  = !checkedItems[position].locked
+
+
+
 
         checkBox?.setOnClickListener {
-            checkedItems[position] = checkBox.isChecked
+            val itemState = checkedItems[position]
+            if (!itemState.locked) {
+                itemState.checked = checkBox.isChecked
+                itemState.locked = checkBox.isChecked
+                notifyDataSetChanged()
+
+                UserData.setPoints(UserData.getPoints() + 1 )
+                Log.e("Questionaire adapter", "Points set to" + UserData.getPoints() )
+
+            }
         }
+
+
+
 
         return itemView!!
     }

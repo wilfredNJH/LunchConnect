@@ -30,11 +30,6 @@ class Questionnaire : AppCompatActivity() {
         // Set the adapter on the ListView
         questionListView?.adapter = questionAdapter
 
-        // Optionally, handle checkbox interactions
-        questionListView?.onItemClickListener = OnItemClickListener { parent, view, position, id ->
-            val isChecked: Boolean = questionAdapter?.checkedItems?.get(position) ?: false
-            questionAdapter?.checkedItems?.set(position, !isChecked)
-            questionAdapter?.notifyDataSetChanged()
-        }
+
     }
 }
