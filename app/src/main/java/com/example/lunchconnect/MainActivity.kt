@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.amplifyframework.api.graphql.model.ModelQuery
 import com.amplifyframework.core.Amplify
 import com.amplifyframework.datastore.generated.model.NoteData
+import com.google.android.material.shape.CornerFamily
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.coroutines.CoroutineScope
@@ -77,6 +78,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, GroupDatabaseActivity::class.java)
             startActivity(intent)
         }
+
+        // create rounded corners for the image
+        profile_main.shapeAppearanceModel = profile_main.shapeAppearanceModel
+            .toBuilder()
+            .setAllCorners(CornerFamily.ROUNDED, 150.0f)
+            .build()
     }
 
     override fun onResume() {
