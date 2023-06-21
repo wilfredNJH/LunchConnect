@@ -9,7 +9,7 @@ import kotlin.math.log
 // a singleton to hold user data (this is a ViewModel pattern, without inheriting from ViewModel)
 object UserGroupData {
 
-    private const val TAG = "UserData"
+    private const val TAG = "UserGroupData"
 
     //
     // observable properties

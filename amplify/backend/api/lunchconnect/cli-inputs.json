@@ -7,6 +7,14 @@
       "mode": "AMAZON_COGNITO_USER_POOLS",
       "cognitoUserPoolId": "authlunchconnectcef7e37e"
     },
-    "conflictResolution": {}
+    "conflictResolution": {},
+    "additionalAuthTypes": [
+      {
+        "mode": "API_KEY",
+        "expirationTime": 300,
+        "apiKeyExpirationDate": "2024-04-16T15:10:50.769Z",
+        "keyDescription": "Public API"
+      }
+    ]
   }
 }
