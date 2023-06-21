@@ -14,3 +14,14 @@ type NoteData
     badges: Int
     image: String
 }
+
+
+type Group
+@model
+@auth(rules: [ { allow: owner } ]){
+  id: ID!
+  members: [String!]!
+  location: String
+  time: String
+  specialRequest: String
+}

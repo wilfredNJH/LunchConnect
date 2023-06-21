@@ -51,24 +51,24 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <!-- after the Space -->
-        <Button
-            android:id="@+id/captureImage"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:backgroundTint="#009688"
-            android:text="Add image" />
+<!--        &lt;!&ndash; after the Space &ndash;&gt;-->
+<!--        <Button-->
+<!--            android:id="@+id/captureImage"-->
+<!--            style="?android:attr/buttonStyleSmall"-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:backgroundTint="#009688"-->
+<!--            android:text="Add image" />-->
 
         <Button
-            android:id="@+id/addNote"
+            android:id="@+id/addGroup"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:backgroundTint="#009688"
-            android:text="Add Note" />
+            android:text="Add Group" />
 
         <Button
             android:id="@+id/cancel"

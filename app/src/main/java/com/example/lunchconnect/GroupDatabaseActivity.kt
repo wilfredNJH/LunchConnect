@@ -43,11 +43,11 @@ class GroupDatabaseActivity : AppCompatActivity() {
         itemTouchHelper.attachToRecyclerView(recyclerView)
 
         // update individual cell when the Note data are modified
-        UserData.notes().observe(this, Observer<MutableList<UserData.Note>> { notes ->
-            Log.d(TAG, "Note observer received ${notes.size} notes")
+        UserGroupData.groups().observe(this, Observer<MutableList<UserGroupData.GroupNote>> { groups ->
+            Log.d(TAG, "Note observer received ${groups.size} notes")
 
             // let's create a RecyclerViewAdapter that manages the individual cells
-            recyclerView.adapter = NoteRecyclerViewAdapter(notes)
+            recyclerView.adapter = GroupRecyclerViewAdapter(groups)
         })
     }
 

@@ -11,10 +11,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-// this is a single cell (row) in the list of Notes
-class NoteRecyclerViewAdapter(
-    private val values: MutableList<UserData.Note>?) :
-    RecyclerView.Adapter<NoteRecyclerViewAdapter.ViewHolder>() {
+// this is a single cell (row) in the list of Groups
+class GroupRecyclerViewAdapter(
+    private val values: MutableList<UserGroupData.GroupNote>?) :
+    RecyclerView.Adapter<GroupRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -25,12 +25,9 @@ class NoteRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val item = values?.get(position)
-        holder.nameView.text = item?.name
-        holder.descriptionView.text = item?.description
+        holder.nameView.text = item?.location
+        holder.descriptionView.text = item?.specialRequest
 
-        if (item?.image != null) {
-            holder.imageView.setImageBitmap(item.image)
-        }
     }
 
     override fun getItemCount() = values?.size ?: 0
