@@ -96,6 +96,10 @@ object UserData {
         return _notes.value?.get(0)?.hobbies?:""
     }
 
+    fun getImageName(): String {
+        return _notes.value?.get(0)?.imageName?:""
+    }
+
     fun getLocation(): String {
         return _notes.value?.get(0)?.location?:""
     }
