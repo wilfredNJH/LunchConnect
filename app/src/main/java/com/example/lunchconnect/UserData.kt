@@ -12,6 +12,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.amplifyframework.datastore.generated.model.NoteData
+import kotlin.math.log
 
 // a singleton to hold user data (this is a ViewModel pattern, without inheriting from ViewModel)
 object UserData {
@@ -76,6 +77,17 @@ object UserData {
         return _notes.value?.get(0)?.points?:0
     }
 
+    fun setPoints(newPoints: Int) {
+        val notes = _notes.value
+        if (notes != null && notes.isNotEmpty()) {
+            notes[0].points = newPoints
+            _notes.notifyObserver()
+        } else {
+            Log.e(TAG, "setPoints: note collection is null or empty!")
+        }
+    }
+
+
     fun getName(): String {
         return _notes.value?.get(0)?.name?:""
     }
@@ -96,6 +108,10 @@ object UserData {
         return _notes.value?.get(0)?.hobbies?:""
     }
 
+    fun getImageName(): String {
+        return _notes.value?.get(0)?.imageName?:""
+    }
+
     fun getLocation(): String {
         return _notes.value?.get(0)?.location?:""
     }
@@ -103,7 +119,7 @@ object UserData {
 
     // a note data class
     data class Note(val id: String, val name: String,val department: String,val jobRole : String, val description: String,
-                    val hobbies: String, val location: String, val points: Int, val badges: Int,var imageName: String? = null) {
+                    val hobbies: String, val location: String, var points: Int, val badges: Int,var imageName: String? = null) {
         override fun toString(): String = name
 
 
@@ -133,12 +149,18 @@ object UserData {
                 val result = Note(noteData.id, noteData.name,noteData.department,noteData.jobRole, noteData.description,
                     noteData.hobbies,noteData.location,noteData.points,noteData.badges,noteData.image)
 
+                Log.d("setting image","image set2")
+
+                // trying to get the image
                 if (noteData.image != null) {
+                    Log.d("setting image","image set")
                     Backend.retrieveImage(noteData.image!!) {
                         result.image = it
 
                         // force a UI update
                         with(UserData) { notifyObserver() }
+
+
                     }
                 }
                 return result

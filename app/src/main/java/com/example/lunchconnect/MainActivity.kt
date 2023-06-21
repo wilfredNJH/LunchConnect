@@ -13,13 +13,27 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.amplifyframework.api.graphql.model.ModelQuery
+import com.amplifyframework.core.Amplify
+import com.amplifyframework.datastore.generated.model.NoteData
+import com.google.android.material.shape.CornerFamily
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.io.FileNotFoundException
 
 class MainActivity : AppCompatActivity() {
 
+    // Declare a coroutine scope as a class member
+    private val coroutineScope = CoroutineScope(Dispatchers.Main)
+
     private lateinit var friends: Button
     private lateinit var group: Button
     private lateinit var questionnaire: Button
+    private lateinit var points: Button
     private lateinit var groupdatabase: Button
     private lateinit var profileimage: ImageView
 
@@ -33,6 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         group =findViewById(R.id.buttonGroup)
         questionnaire = findViewById(R.id.button_questionnaire)
+        points = findViewById(R.id.button_points)
         friends = findViewById(R.id.button_friends)
         profileimage = findViewById(R.id.profile_main)
         groupdatabase = findViewById(R.id.buttonGroupDatabase)
@@ -41,6 +56,11 @@ class MainActivity : AppCompatActivity() {
         loadImage("profile_image.png")
 
         questionnaire.setOnClickListener {
+            val intent = Intent(this, Questionnaire::class.java)
+            startActivity(intent)
+        }
+
+        points.setOnClickListener {
             val intent = Intent(this, PointsAndBadges::class.java)
             startActivity(intent)
         }
@@ -65,6 +85,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, GroupDatabaseActivity::class.java)
             startActivity(intent)
         }
+
+        // create rounded corners for the image
+        profile_main.shapeAppearanceModel = profile_main.shapeAppearanceModel
+            .toBuilder()
+            .setAllCorners(CornerFamily.ROUNDED, 150.0f)
+            .build()
     }
 
     override fun onResume() {
@@ -83,10 +109,27 @@ class MainActivity : AppCompatActivity() {
     {
         // Load the image from internal storage
         try {
-            val bitmap = loadImageFromInternalStorage(filename)
-            if (bitmap != null) {
-                findViewById<ImageView>(R.id.profile_main).setImageBitmap(bitmap)
-            }
+            // query
+            Amplify.API.query(
+                ModelQuery.list(NoteData::class.java),
+                { response ->
+                    for (noteData in response.data) {
+                        // getting the user data from the note
+                        val userNoteData = UserData.Note.from(noteData)
+
+                        coroutineScope.launch {
+                            delay(1000) // Delay in milliseconds (2 seconds in this example)
+
+                            // Code to be executed after the delay
+                            if (userNoteData.image != null) {
+                                profile_main.setImageBitmap(userNoteData.image)
+                            }
+                        }
+                    }
+                },
+                { error -> Log.e("load image ", "Query failure", error) }
+            )
+
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
             // Handle the situation when the file does not exist, perhaps by showing a default image or a toast message
