@@ -25,16 +25,18 @@ class GroupRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val item = values?.get(position)
-        holder.nameView.text = item?.location
-        holder.descriptionView.text = item?.specialRequest
+        holder.groupLocationView.text = item?.location
+        holder.groupTimeView.text = item?.time
+        holder.groupSpecialRequestView.text = item?.specialRequest
 
     }
 
     override fun getItemCount() = values?.size ?: 0
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val imageView: ImageView = view.findViewById(R.id.image)
-        val nameView: TextView = view.findViewById(R.id.name)
-        val descriptionView: TextView = view.findViewById(R.id.description)
+//        val imageView: ImageView = view.findViewById(R.id.image)
+        val groupLocationView: TextView = view.findViewById(R.id.groupLocation)
+        val groupTimeView: TextView = view.findViewById(R.id.groupTime)
+        val groupSpecialRequestView: TextView = view.findViewById(R.id.groupSpecialRequest)
     }
 }

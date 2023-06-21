@@ -8,11 +8,11 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.shape.CornerFamily
 import kotlinx.android.synthetic.main.activity_add_note.*
-import kotlinx.android.synthetic.main.activity_add_note.name
 import kotlinx.android.synthetic.main.activity_profile.*
 import java.io.File
 import java.io.FileOutputStream
@@ -31,14 +31,17 @@ class AddNoteActivity : AppCompatActivity()  {
 
         // add note button
         addGroup.setOnClickListener {
+            val innerLocation = findViewById<EditText>(R.id.groupLocationET).text.toString()
+            val innerTime = findViewById<EditText>(R.id.groupTimeET).text.toString()
+            val innerSpecialRequest = findViewById<EditText>(R.id.groupSpecialRequestET).text.toString()
 
-            // create a note object
+            // create a group object
             val group = UserGroupData.GroupNote(
                 UUID.randomUUID().toString(),
                 MutableList<String>(1) { "s" },
-                "",
-                "",
-                "",
+                innerLocation,
+                innerTime,
+                innerSpecialRequest,
             )
 
             // store it in the backend

@@ -205,12 +205,12 @@ object Backend {
     private fun updateUserGroupData(withSignedInStatus: Boolean) {
         UserGroupData.setSignedIn(withSignedInStatus)
 
-        val notes = UserGroupData.groups().value
-        val isEmpty = notes?.isEmpty() ?: false
+        val groups = UserGroupData.groups().value
+        val isEmpty = groups?.isEmpty() ?: false
 
         // query notes when signed in and we do not have Notes yet
         if (withSignedInStatus && isEmpty) {
-            this.queryNotes()
+            this.queryGroups()
         } else {
             UserGroupData.resetGroup()
         }
@@ -221,37 +221,33 @@ object Backend {
         Amplify.API.query(
             ModelQuery.list(NoteData::class.java),
             { response ->
-                Log.i(TAG, "Queried")
-                if(response.data.items.count() < 1){
-                    // create a note object
-                    val note = UserData.Note(
-                        UUID.randomUUID().toString(),
-                        "deon",
-                        "deon",
-                        "deon",
-                        "deon",
-                        "deon",
-                        "deon",
-                        0,
-                        0
-                    )
+                // getting the current user and setting the user name
+                Amplify.Auth.getCurrentUser({
+                    user : AuthUser ->
+                    user.username
+                    if(response.data.items.count() < 1){
+                        // create a note object
+                        val note = UserData.Note(
+                            UUID.randomUUID().toString(),
+                            user.username,
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            0,
+                            0
+                        )
 
-//                    // addNoteACtivity.kt, inside the addNote.setOnClickListener() method and after the Note() object is created.
-//                    if (this.noteImagePath != null) {
-//                        note.imageName = UUID.randomUUID().toString()
-//                        //note.setImage(this.noteImage)
-//                        note.image = this.noteImage
-//
-//                        // asynchronously store the image (and assume it will work)
-//                        Backend.storeImage(this.noteImagePath!!, note.imageName!!)
-//                    }
+                        // store it in the backend
+                        Backend.createNote(note)
 
-                    // store it in the backend
-                    Backend.createNote(note)
+                        // add it to UserData, this will trigger a UI refresh
+                        UserData.addNote(note)
+                    }
+                },{
 
-                    // add it to UserData, this will trigger a UI refresh
-                    UserData.addNote(note)
-                }
+                })
             },
             { error -> Log.e(TAG, "Query failure", error) }
         )
