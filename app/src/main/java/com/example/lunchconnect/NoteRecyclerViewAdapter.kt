@@ -11,10 +11,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-// this is a single cell (row) in the list of Notes
-class NoteRecyclerViewAdapter(
-    private val values: MutableList<UserData.Note>?) :
-    RecyclerView.Adapter<NoteRecyclerViewAdapter.ViewHolder>() {
+// this is a single cell (row) in the list of Groups
+class GroupRecyclerViewAdapter(
+    private val values: MutableList<UserGroupData.GroupNote>?) :
+    RecyclerView.Adapter<GroupRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -25,19 +25,18 @@ class NoteRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val item = values?.get(position)
-        holder.nameView.text = item?.name
-        holder.descriptionView.text = item?.description
+        holder.groupLocationView.text = item?.location
+        holder.groupTimeView.text = item?.time
+        holder.groupSpecialRequestView.text = item?.specialRequest
 
-        if (item?.image != null) {
-            holder.imageView.setImageBitmap(item.image)
-        }
     }
 
     override fun getItemCount() = values?.size ?: 0
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val imageView: ImageView = view.findViewById(R.id.image)
-        val nameView: TextView = view.findViewById(R.id.name)
-        val descriptionView: TextView = view.findViewById(R.id.description)
+//        val imageView: ImageView = view.findViewById(R.id.image)
+        val groupLocationView: TextView = view.findViewById(R.id.groupLocation)
+        val groupTimeView: TextView = view.findViewById(R.id.groupTime)
+        val groupSpecialRequestView: TextView = view.findViewById(R.id.groupSpecialRequest)
     }
 }

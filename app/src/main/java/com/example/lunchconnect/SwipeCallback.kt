@@ -83,15 +83,15 @@ class SwipeCallback(private val activity: AppCompatActivity): ItemTouchHelper.Si
         // get the position of the swiped item in the list
         val position = viewHolder.adapterPosition
 
-        // remove to note from the userdata will refresh the UI
-        val note = UserData.deleteNote(position)
+        // remove to group from the userdata will refresh the UI
+        val group = UserGroupData.deleteGroup(position)
 
         // async remove from backend
-        Backend.deleteNote(note)
+        Backend.deleteGroup(group)
 
-        if (note?.imageName != null) {
-            //asynchronously delete the image (and assume it will work)
-            Backend.deleteImage(note.imageName!!)
-        }
+//        if (group?.imageName != null) {
+//            //asynchronously delete the image (and assume it will work)
+//            Backend.deleteImage(group.imageName!!)
+//        }
     }
 }

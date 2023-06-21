@@ -17,58 +17,67 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Create a New Note"
+            android:text="Create a New Group"
             android:textSize="10pt" />
 
         <EditText
-            android:id="@+id/name"
+            android:id="@+id/groupLocationET"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="name"
+            android:hint="Location"
             android:inputType="text"
             android:lines="5" />
 
         <EditText
-            android:id="@+id/description"
+            android:id="@+id/groupTimeET"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:hint="description"
+            android:hint="Time"
             android:inputType="textMultiLine"
             android:lines="3" />
 
-        <!-- after the description EditText -->
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/image"
-            android:layout_width="match_parent"
-            android:layout_height="280dp"
-            android:layout_margin="16dp"
-            android:scaleType="centerCrop" />
+        <EditText
+            android:id="@+id/groupSpecialRequestET"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:hint="Special Request"
+            android:inputType="textMultiLine"
+            android:lines="3" />
+
+<!--        &lt;!&ndash; after the description EditText &ndash;&gt;-->
+<!--        <com.google.android.material.imageview.ShapeableImageView-->
+<!--            android:id="@+id/image"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="280dp"-->
+<!--            android:layout_margin="16dp"-->
+<!--            android:scaleType="centerCrop" />-->
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <!-- after the Space -->
-        <Button
-            android:id="@+id/captureImage"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:backgroundTint="#009688"
-            android:text="Add image" />
+<!--        &lt;!&ndash; after the Space &ndash;&gt;-->
+<!--        <Button-->
+<!--            android:id="@+id/captureImage"-->
+<!--            style="?android:attr/buttonStyleSmall"-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:backgroundTint="#009688"-->
+<!--            android:text="Add image" />-->
 
         <Button
-            android:id="@+id/addNote"
+            android:id="@+id/addGroup"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:backgroundTint="#009688"
-            android:text="Add Note" />
+            android:text="Add Group" />
 
         <Button
             android:id="@+id/cancel"

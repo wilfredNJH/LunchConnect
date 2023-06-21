@@ -21,18 +21,25 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/groupLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Title"
+            android:text="Location"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/groupTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Title"
+            android:text="Time"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/groupSpecialRequest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Special Request"
             android:textSize="15sp" />
 
     </LinearLayout>

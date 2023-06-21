@@ -25,6 +25,7 @@ import com.amplifyframework.auth.result.AuthSessionResult
 import com.amplifyframework.auth.result.AuthSignInResult
 import com.amplifyframework.core.Amplify
 import com.amplifyframework.core.InitializationStatus
+import com.amplifyframework.datastore.generated.model.Group
 import com.amplifyframework.datastore.generated.model.NoteData
 import com.amplifyframework.hub.HubChannel
 import com.amplifyframework.hub.HubEvent
@@ -76,10 +77,12 @@ object Backend {
                     when (AuthChannelEventName.valueOf(hubEvent.name)) {
                         AuthChannelEventName.SIGNED_IN -> {
                             updateUserData(true)
+                            updateUserGroupData(true)
                             Log.i(TAG, "HUB : SIGNED_IN")
                         }
                         AuthChannelEventName.SIGNED_OUT -> {
                             updateUserData(false)
+                            updateUserGroupData(false)
                             Log.i(TAG, "HUB : SIGNED_OUT")
                         }
                         else -> Log.i(TAG, """HUB EVENT:${hubEvent.name}""")
@@ -204,42 +207,52 @@ object Backend {
         )
     }
 
+    private fun updateUserGroupData(withSignedInStatus: Boolean) {
+        UserGroupData.setSignedIn(withSignedInStatus)
+
+        val groups = UserGroupData.groups().value
+        val isEmpty = groups?.isEmpty() ?: false
+
+        // query notes when signed in and we do not have Notes yet
+        if (withSignedInStatus && isEmpty) {
+            this.queryGroups()
+        } else {
+            UserGroupData.resetGroup()
+        }
+    }
+
     fun createIfProfileNotExist(){
         // query and check if there already exist a note
         Amplify.API.query(
             ModelQuery.list(NoteData::class.java),
             { response ->
-                Log.i(TAG, "Queried")
-                if(response.data.items.count() < 1){
-                    // create a note object
-                    val note = UserData.Note(
-                        UUID.randomUUID().toString(),
-                        "deon",
-                        "deon",
-                        "deon",
-                        "deon",
-                        "deon",
-                        "deon",
-                        0,
-                        0
-                    )
+                // getting the current user and setting the user name
+                Amplify.Auth.getCurrentUser({
+                    user : AuthUser ->
+                    user.username
+                    if(response.data.items.count() < 1){
+                        // create a note object
+                        val note = UserData.Note(
+                            UUID.randomUUID().toString(),
+                            user.username,
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            0,
+                            0
+                        )
 
-//                    // addNoteACtivity.kt, inside the addNote.setOnClickListener() method and after the Note() object is created.
-//                    if (this.noteImagePath != null) {
-//                        note.imageName = UUID.randomUUID().toString()
-//                        //note.setImage(this.noteImage)
-//                        note.image = this.noteImage
-//
-//                        // asynchronously store the image (and assume it will work)
-//                        Backend.storeImage(this.noteImagePath!!, note.imageName!!)
-//                    }
+                        // store it in the backend
+                        Backend.createNote(note)
 
-                    // store it in the backend
-                    Backend.createNote(note)
+                        // add it to UserData, this will trigger a UI refresh
+                        UserData.addNote(note)
+                    }
+                },{
 
-                    // add it to UserData, this will trigger a UI refresh
-                    UserData.addNote(note)
-                }
+                })
             },
             { error -> Log.e(TAG, "Query failure", error) }
         )
@@ -313,6 +326,79 @@ object Backend {
 
         Amplify.API.mutate(
             ModelMutation.delete(note.data),
+            { response ->
+                Log.i(TAG, "Deleted")
+                if (response.hasErrors()) {
+                    Log.e(TAG, response.errors.first().message)
+                } else {
+                    Log.i(TAG, "Deleted Note $response")
+                }
+            },
+            { error -> Log.e(TAG, "Delete failed", error) }
+        )
+    }
+
+    /*
+    Backend handling of groups
+     */
+    fun queryGroups() {
+        Log.i(TAG, "Querying groups")
+
+        Amplify.API.query(
+            ModelQuery.list(Group::class.java),
+            { response ->
+                Log.i(TAG, "Queried")
+                for (groupData in response.data) {
+                    // TODO should add all the notes at once instead of one by one (each add triggers a UI refresh)
+                    UserGroupData.addGroup(UserGroupData.GroupNote.from(groupData))
+                }
+            },
+            { error -> Log.e(TAG, "Query failure", error) }
+        )
+    }
+
+    fun createGroup(group: UserGroupData.GroupNote) {
+        Log.i(TAG, "Creating notes")
+
+        Amplify.API.mutate(
+            ModelMutation.create(group.data),
+            { response ->
+                Log.i(TAG, "Created")
+                if (response.hasErrors()) {
+                    Log.e(TAG, response.errors.first().message)
+                } else {
+                    Log.i(TAG, "Created Note with id: " + response.data.id)
+                }
+            },
+            { error -> Log.e(TAG, "Create failed", error) }
+        )
+    }
+
+    fun editGroup(group: UserGroupData.GroupNote) {
+        Log.i(TAG, "Updating notes")
+
+        Amplify.API.mutate(
+            ModelMutation.update(group.data),
+            { response ->
+                Log.i(TAG, "Updating")
+                if (response.hasErrors()) {
+                    Log.e(TAG, response.errors.first().message)
+                } else {
+                    Log.i(TAG, "Updating Note with id: " + response.data.id)
+                }
+            },
+            { error -> Log.e(TAG, "Updating failed", error) }
+        )
+    }
+
+    fun deleteGroup(group: UserGroupData.GroupNote?) {
+
+        if (group == null) return
+
+        Log.i(TAG, "Deleting note $group")
+
+        Amplify.API.mutate(
+            ModelMutation.delete(group.data),
             { response ->
                 Log.i(TAG, "Deleted")
                 if (response.hasErrors()) {

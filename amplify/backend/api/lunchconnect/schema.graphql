@@ -18,9 +18,7 @@ type NoteData
 
 type Group
 @model
-@auth(rules: [
-    { allow: public, provider: apiKey }
-    ]){
+@auth(rules: [ { allow: private } ]){
   id: ID!
   members: [String!]!
   location: String
