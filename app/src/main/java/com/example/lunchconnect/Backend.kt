@@ -354,7 +354,7 @@ object Backend {
 
     fun createGroup(group: UserGroupData.GroupNote) {
         Log.i(TAG, "Creating notes")
-
+        Log.i(TAG, group.location)
         Amplify.API.mutate(
             ModelMutation.create(group.data),
             { response ->

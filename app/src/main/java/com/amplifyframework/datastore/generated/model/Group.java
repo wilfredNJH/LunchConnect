@@ -30,11 +30,15 @@ public final class Group implements Model {
   public static final QueryField LOCATION = field("Group", "location");
   public static final QueryField TIME = field("Group", "time");
   public static final QueryField SPECIAL_REQUEST = field("Group", "specialRequest");
+  public static final QueryField GROUP_NAME = field("Group", "groupName");
+  public static final QueryField CREATOR = field("Group", "creator");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) List<String> members;
   private final @ModelField(targetType="String") String location;
   private final @ModelField(targetType="String") String time;
   private final @ModelField(targetType="String") String specialRequest;
+  private final @ModelField(targetType="String") String groupName;
+  private final @ModelField(targetType="String") String creator;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String resolveIdentifier() {
@@ -61,6 +65,14 @@ public final class Group implements Model {
       return specialRequest;
   }
   
+  public String getGroupName() {
+      return groupName;
+  }
+  
+  public String getCreator() {
+      return creator;
+  }
+  
   public Temporal.DateTime getCreatedAt() {
       return createdAt;
   }
@@ -69,12 +81,14 @@ public final class Group implements Model {
       return updatedAt;
   }
   
-  private Group(String id, List<String> members, String location, String time, String specialRequest) {
+  private Group(String id, List<String> members, String location, String time, String specialRequest, String groupName, String creator) {
     this.id = id;
     this.members = members;
     this.location = location;
     this.time = time;
     this.specialRequest = specialRequest;
+    this.groupName = groupName;
+    this.creator = creator;
   }
   
   @Override
@@ -90,6 +104,8 @@ public final class Group implements Model {
               ObjectsCompat.equals(getLocation(), group.getLocation()) &&
               ObjectsCompat.equals(getTime(), group.getTime()) &&
               ObjectsCompat.equals(getSpecialRequest(), group.getSpecialRequest()) &&
+              ObjectsCompat.equals(getGroupName(), group.getGroupName()) &&
+              ObjectsCompat.equals(getCreator(), group.getCreator()) &&
               ObjectsCompat.equals(getCreatedAt(), group.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), group.getUpdatedAt());
       }
@@ -103,6 +119,8 @@ public final class Group implements Model {
       .append(getLocation())
       .append(getTime())
       .append(getSpecialRequest())
+      .append(getGroupName())
+      .append(getCreator())
       .append(getCreatedAt())
       .append(getUpdatedAt())
       .toString()
@@ -118,6 +136,8 @@ public final class Group implements Model {
       .append("location=" + String.valueOf(getLocation()) + ", ")
       .append("time=" + String.valueOf(getTime()) + ", ")
       .append("specialRequest=" + String.valueOf(getSpecialRequest()) + ", ")
+      .append("groupName=" + String.valueOf(getGroupName()) + ", ")
+      .append("creator=" + String.valueOf(getCreator()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
@@ -142,6 +162,8 @@ public final class Group implements Model {
       null,
       null,
       null,
+      null,
+      null,
       null
     );
   }
@@ -151,7 +173,9 @@ public final class Group implements Model {
       members,
       location,
       time,
-      specialRequest);
+      specialRequest,
+      groupName,
+      creator);
   }
   public interface MembersStep {
     BuildStep members(List<String> members);
@@ -164,6 +188,8 @@ public final class Group implements Model {
     BuildStep location(String location);
     BuildStep time(String time);
     BuildStep specialRequest(String specialRequest);
+    BuildStep groupName(String groupName);
+    BuildStep creator(String creator);
   }
   
 
@@ -173,6 +199,8 @@ public final class Group implements Model {
     private String location;
     private String time;
     private String specialRequest;
+    private String groupName;
+    private String creator;
     @Override
      public Group build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -182,7 +210,9 @@ public final class Group implements Model {
           members,
           location,
           time,
-          specialRequest);
+          specialRequest,
+          groupName,
+          creator);
     }
     
     @Override
@@ -210,6 +240,18 @@ public final class Group implements Model {
         return this;
     }
     
+    @Override
+     public BuildStep groupName(String groupName) {
+        this.groupName = groupName;
+        return this;
+    }
+    
+    @Override
+     public BuildStep creator(String creator) {
+        this.creator = creator;
+        return this;
+    }
+    
     /**
      * @param id id
      * @return Current Builder instance, for fluent method chaining
@@ -222,12 +264,14 @@ public final class Group implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, List<String> members, String location, String time, String specialRequest) {
+    private CopyOfBuilder(String id, List<String> members, String location, String time, String specialRequest, String groupName, String creator) {
       super.id(id);
       super.members(members)
         .location(location)
         .time(time)
-        .specialRequest(specialRequest);
+        .specialRequest(specialRequest)
+        .groupName(groupName)
+        .creator(creator);
     }
     
     @Override
@@ -248,6 +292,16 @@ public final class Group implements Model {
     @Override
      public CopyOfBuilder specialRequest(String specialRequest) {
       return (CopyOfBuilder) super.specialRequest(specialRequest);
+    }
+    
+    @Override
+     public CopyOfBuilder groupName(String groupName) {
+      return (CopyOfBuilder) super.groupName(groupName);
+    }
+    
+    @Override
+     public CopyOfBuilder creator(String creator) {
+      return (CopyOfBuilder) super.creator(creator);
     }
   }
   

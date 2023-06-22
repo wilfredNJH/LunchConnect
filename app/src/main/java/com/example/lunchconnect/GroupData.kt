@@ -9,11 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_group_data.*
 import java.util.*
 import kotlin.collections.ArrayList
 
 class GroupData : AppCompatActivity() {
 
+    private lateinit var groupName: EditText
     private lateinit var groupDescriptionEditText: EditText
     private lateinit var timeStartEditText: EditText
     private lateinit var timeEndEditText: EditText
@@ -37,6 +39,7 @@ class GroupData : AppCompatActivity() {
         specialRequestEditText = findViewById(R.id.specialRequestEditText)
         createGroupButton = findViewById(R.id.createGroupButton)
         groupListView = findViewById(R.id.groupListView)
+        groupName = findViewById(R.id.et_groupName)
 
         createGroupButton.setOnClickListener {
             createGroup()
@@ -84,6 +87,7 @@ class GroupData : AppCompatActivity() {
         val eatingLocation = eatingLocationEditText.text.toString()
         val meetingLocation = meetingLocationEditText.text.toString()
         val specialRequest = specialRequestEditText.text.toString()
+        val groupName = groupName.text.toString()
 
         // Check if any required field is empty
         if (groupDescription.isEmpty() || timeStart.isEmpty() || timeEnd.isEmpty() || eatingLocation.isEmpty() || meetingLocation.isEmpty()) {
@@ -103,10 +107,21 @@ class GroupData : AppCompatActivity() {
         val group = UserGroupData.GroupNote(
             UUID.randomUUID().toString(),
             mutableListOf(""),
-            "Yishun",
-            "",
-            ""
+            eatingLocation,
+            "$timeStart - $timeEnd",
+            specialRequest,
+            groupName,
+            UserData.getName()
         )
+//        val group = UserGroupData.GroupNote(
+//            UUID.randomUUID().toString(),
+//            mutableListOf(""),
+//            "",
+//            "",
+//            "",
+//            "",
+//            ""
+//        )
 
         // store it in the backend
         Backend.createGroup(group)

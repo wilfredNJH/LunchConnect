@@ -38,10 +38,12 @@ class AddNoteActivity : AppCompatActivity()  {
             // create a group object
             val group = UserGroupData.GroupNote(
                 UUID.randomUUID().toString(),
-                MutableList<String>(1) { "s" },
-                innerLocation,
-                innerTime,
-                innerSpecialRequest,
+                MutableList<String>(2) { "s"; "b" },
+                "Yishun",
+                "",
+                "",
+                "",
+                ""
             )
 
             // store it in the backend

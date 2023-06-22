@@ -73,14 +73,16 @@ object UserGroupData {
     fun addGroupsToGroups(groups: Groups) {
         _groups.value?.forEach {
             group ->
-            groups.addGroup(group.location,"",1.0f,1.0f,"","")
+            groups.addGroup(
+                group.groupName,
+                group.creator,group.time,group.location,group.specialRequest)
             Log.i("TAG", group.location)
         }
     }
 
     // a note data class
     data class GroupNote(val id: String, val members: MutableList<String> , val location : String, val time : String,
-    val specialRequest : String) {
+    val specialRequest : String, val groupName : String, val creator : String) {
         override fun toString(): String = location
 
 
@@ -92,6 +94,8 @@ object UserGroupData {
                 .time(this.time)
                 .specialRequest((this.specialRequest))
                 .id(this.id)
+                .groupName(this.groupName)
+                .creator(this.creator)
                 .build()
 
         /*
@@ -103,7 +107,7 @@ object UserGroupData {
         companion object {
             fun from(GroupnoteData : Group) : GroupNote {
                 val result = GroupNote(GroupnoteData.id, GroupnoteData.members,GroupnoteData.location,
-                    GroupnoteData.time,GroupnoteData.specialRequest)
+                    GroupnoteData.time,GroupnoteData.specialRequest,GroupnoteData.groupName,GroupnoteData.creator)
 
                 return result
             }

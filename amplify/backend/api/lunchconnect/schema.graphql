@@ -24,4 +24,6 @@ type Group
   location: String
   time: String
   specialRequest: String
+  groupName: String
+  creator: String
 }

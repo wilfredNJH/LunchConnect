@@ -76,8 +76,7 @@ class Groups : AppCompatActivity() {
     public fun addGroup(
         groupName: String,
         creatorName: String,
-        timeStart: Float,
-        timeEnd: Float,
+        time: String,
         foodGenre: String,
         desc: String
     ) {
@@ -89,8 +88,9 @@ class Groups : AppCompatActivity() {
         groupLayout.findViewById<TextView>(R.id.tv_groupsCardCreator).text =
             "Created by " + creatorName
         groupLayout.findViewById<TextView>(R.id.tv_groupsCardFoodGenre).text = foodGenre
-        groupLayout.findViewById<TextView>(R.id.tv_groupsCardTime).text =
-            "%.2f".format(timeStart) + "-" + "%.2f".format(timeEnd)
+//        groupLayout.findViewById<TextView>(R.id.tv_groupsCardTime).text =
+//            "%.2f".format(timeStart) + "-" + "%.2f".format(timeEnd)
+        groupLayout.findViewById<TextView>(R.id.tv_groupsCardTime).text = time
         groupLayout.findViewById<TextView>(R.id.tv_groupsCardDescription).text = desc
 
         // set info button event to hide and show hidden info
